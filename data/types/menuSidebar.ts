@@ -15,39 +15,9 @@ export const menuSidebar = [
         icon: IoSpeedometerOutline
     },
     {
-        name: 'Promoción de banner',
-        path: 'promocion-de-banner',
-        icon: TbPercentage
-    },
-    // {
-    //     name: 'Ventas',
-    //     path: 'ventas',
-    //     icon: BsChat
-    // },
-    {
-        name: 'Confirmación del curso',
-        path: 'confirmacion-del-curso',
+        name: 'Mi curso',
+        path: 'mi-curso',
         icon: TbBook2
-    },
-    // {
-    //     name: 'Retiro',
-    //     path: 'retiro',
-    //     icon: TbCashBanknote
-    // },
-    // {
-    //     name: 'Reclamo de reembolso',
-    //     path: 'reclamo-de-reembolso',
-    //     icon: TbStars
-    // },
-    {
-        name: 'Notificación de inserción',
-        path: 'notificacion-de-insercion',
-        icon: TbCashBanknote
-    },
-    {
-        name: 'Preguntas más frecuentes',
-        path: 'preguntas-mas-frecuentes',
-        icon: IoIosHelpCircleOutline
     },
     {
         name: 'Lines',
