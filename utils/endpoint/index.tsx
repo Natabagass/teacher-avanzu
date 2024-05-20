@@ -14,3 +14,6 @@ export const USERS_BACKGROUND_PHOTO = 'users/_uploadBackgroundPhoto'
 export const USERS_DELETE_BACKGROUND_PHOTO = 'users/_deleteBackgroundPhoto'
 export const USERS_DELETE_PROFILE_PICTURE = 'users/_deleteProfilePicture'
 export const USERS_SOCIAL = 'users/socials'
+
+// NOTIFICATIONS
+export const NOTIFICATION_GET = 'notifications'

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import "./globals.css";
+import { ModalProvider } from "@hooks/modal-global";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +20,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>        
+        {/* <NextAuthProvider>
+            <ProfileUserProvider> */}
+              <ModalProvider>
+                {children}
+              </ModalProvider>
+            {/* </ProfileUserProvider>
+        </NextAuthProvider> */}
+        </body>
     </html>
   );
 }

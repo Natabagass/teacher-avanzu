@@ -1,6 +1,8 @@
 "use client"
 
 import BackButton from "@components/button/back";
+import ModalNotification from "@components/modal/home/notifications";
+import ModalProfile from "@components/modal/home/profile";
 import Text from "@components/text";
 // import { useProfile } from "@context/auth";
 import Layout from "@layout/main-layout";
@@ -17,6 +19,7 @@ const NavDashboard = ({ scroll, close }: { scroll?: boolean, close: boolean }) =
     const [state, setState] = useState({
         isScrolled: false,
         open: false,
+        profile: false,
         cart: false
     })
 
@@ -55,7 +58,9 @@ const NavDashboard = ({ scroll, close }: { scroll?: boolean, close: boolean }) =
                                 className="bg-purple-300 rounded-full p-3">
                                 <IoIosNotificationsOutline className="text-base text-white" />
                             </div>
-                            <Link href="/dashboard/perfil" className="rounded-full p-3 relative w-10 min-h-full">
+                            <div
+                                onClick={() => setState({ ...state, profile: !state.profile })}
+                                className="rounded-full p-3 relative w-10 min-h-full">
                                 {/* <Image src={
                                     userInfo.profilePicture === ''
                                         ? userInfo.name === ''
@@ -64,11 +69,19 @@ const NavDashboard = ({ scroll, close }: { scroll?: boolean, close: boolean }) =
                                         : userInfo.profilePicture
                                 } alt="Person Image - (Avanzu)" fill className="object-cover rounded-full object-center" /> */}
                                 <Image src={`${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Person Image - (Avanzu)" fill className="object-cover rounded-full object-center" />
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 </Layout>
             </nav>
+            <ModalNotification
+                open={state.open}
+                setOpen={setState}
+            />
+            <ModalProfile
+                open={state.profile}
+                setOpen={setState}
+            />
         </>
     );
 }
