@@ -49,15 +49,14 @@ const NavDashboard = ({ scroll, close }: { scroll?: boolean, close: boolean }) =
                 } */}
                 <Layout variant="dashboard">
                     <div className="flex flex-row items-center w-full justify-between">
-                        <Link href={'/'} className="relative w-full h-full">
+                        <Link href={'/dashboard/hogar'} className="relative w-full h-full">
                             <Image width={130} height={100} className="object-contain object-center" src={'/assets/avanzu.png'} alt="Logo - (Avanzu)" />
                         </Link>
                         <div className="flex flex-row w-full justify-end cursor-pointer gap-3">
-                            <div
-                                onClick={() => setState({ ...state, open: true })}
+                            <Link href={'/dashboard/notificacion'}
                                 className="bg-purple-300 rounded-full p-3">
                                 <IoIosNotificationsOutline className="text-base text-white" />
-                            </div>
+                            </Link>
                             <div
                                 onClick={() => setState({ ...state, profile: !state.profile })}
                                 className="rounded-full p-3 relative w-10 min-h-full">
@@ -74,10 +73,6 @@ const NavDashboard = ({ scroll, close }: { scroll?: boolean, close: boolean }) =
                     </div>
                 </Layout>
             </nav>
-            <ModalNotification
-                open={state.open}
-                setOpen={setState}
-            />
             <ModalProfile
                 open={state.profile}
                 setOpen={setState}

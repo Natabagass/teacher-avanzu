@@ -13,7 +13,7 @@ const Text = ({
     children: React.ReactNode,
     weight: 'font-base' | 'font-normal' | 'font-bold' | 'font-semibold' | 'font-medium',
     color?: string,
-    size: 'h1' | 'h2' | 'h3' | 'h4' | 'p1' | 'p2' | 'p3' | 'cpt1' | 'cpt2'
+    size: string
 }) => {
     switch (variant) {
         case 'subTitle-sub':

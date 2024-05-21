@@ -1,7 +1,7 @@
 'use client'
 
 import Button from "@components/button";
-import ModalShare from "@components/modal/home/share";
+// import ModalShare from "@components/modal/home/share";
 import Text from "@components/text";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -62,12 +62,12 @@ const CardCertificado = ({
                     ))
                 }
             </div>
-            <ModalShare
+            {/* <ModalShare
                 open={open}
                 setOpen={setOpen}
                 qrcode="/assets/dashboard/qr-code.svg"
                 pathname={pathname}
-            />
+            /> */}
         </>
     );
 }
