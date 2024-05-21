@@ -375,3 +375,8 @@ body {
 .check-cart+label {
     color: #100d13;
 }
+
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}

@@ -1,6 +1,5 @@
 'use client'
 
-import ModalMoreSuscripcion from "@components/modal/suscripcion/more";
 import Text from "@components/text";
 import { useState } from "react";
 import { LuMoreVertical, LuUser } from "react-icons/lu";
@@ -32,7 +31,7 @@ const CardSuscripcion = ({
                 <button onClick={() => setOpen(!open)}>
                     <LuMoreVertical className="text-white text-3xl" />
                 </button>
-                <div className="absolute p-2 z-50 right-14">
+                {/* <div className="absolute p-2 z-50 right-14">
                     {
                         open &&
                         <ModalMoreSuscripcion
@@ -42,7 +41,7 @@ const CardSuscripcion = ({
                             setShow={setShow}
                         />
                     }
-                </div>
+                </div> */}
             </div>
         </div>
     );

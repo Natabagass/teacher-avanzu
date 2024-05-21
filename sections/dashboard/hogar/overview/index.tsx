@@ -10,7 +10,7 @@ import { TbBook2, TbBooks, TbCashBanknote, TbDownload, TbSchool, TbStars, TbUser
 const HeaderHogar = () => {
     return (
         <Layout variant="dashboard" className="flex flex-col w-full gap-6">
-            <div className="relative flex flex-row w-full  justify-between items-center bg-neon-green-500 rounded-xl mt-6">
+            <div className="relative flex flex-row w-full  justify-between items-center bg-neon-green-500 rounded-xl">
                 <div className="w-full h-[105px]">
                     <Image alt="Background - (Avanzu)" src={'/assets/dashboard/background-help.png'} className="object-cover object-center" fill />
                 </div>
@@ -67,7 +67,7 @@ export const dataOverview = [
     {
         id: 3,
         name: 'Mi estudiante',
-        path: '',
+        path: 'mi-estudiante',
         total: '54',
         rating: '',
         icon: TbUsersGroup

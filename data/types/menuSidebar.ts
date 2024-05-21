@@ -1,4 +1,4 @@
-import { BsChat } from "react-icons/bs";
+import { BsChat, BsListStars } from "react-icons/bs";
 import { CiTrophy } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
 import { HiOutlineSparkles } from "react-icons/hi";
@@ -18,6 +18,21 @@ export const menuSidebar = [
         name: 'Mi curso',
         path: 'mi-curso',
         icon: TbBook2
+    },
+    {
+        name: 'Calificacion De Los Cursos',
+        path: 'calificacion-de-los-cursos',
+        icon: BsListStars
+    },
+    {
+        name: 'Revision y calificaciones',
+        path: 'revision-y-calificaciones',
+        icon: TbStars
+    },
+    {
+        name: 'Intento de prueba',
+        path: 'intento-de-prueba',
+        icon: TbCheckupList
     },
     {
         name: 'Lines',

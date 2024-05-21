@@ -2,10 +2,10 @@
 
 import BannerInstaller from "@components/banner/installer";
 import Sidebar from "@components/sidebar";
-import Navbar from "@components/utils/navbar";
+import NavDashboard from "@components/utils/navbar";
 import { useState } from "react";
 
-const DashboardLayout = ({ children, variant, scroll }: { children: React.ReactNode, variant: string, scroll?: boolean }) => {
+const DashboardLayout = ({ children, variant, scroll, padding }: { children: React.ReactNode, padding?: string, variant: string, scroll?: boolean }) => {
     const [close, setClose] = useState<boolean>(false)
 
     switch (variant) {
@@ -24,7 +24,7 @@ const DashboardLayout = ({ children, variant, scroll }: { children: React.ReactN
                     <Sidebar close={close} />
                     <div className="flex flex-col top-0 fixed w-full z-50">
                         <BannerInstaller close={close} setClose={setClose} />
-                        <Navbar close={close} scroll={scroll} />
+                        <NavDashboard close={close} scroll={scroll} />
                     </div>
                     <div className={`${close ? 'mt-28' : 'mt-48'}  pl-16 flex mb-20 flex-col w-full relative z-40`}>
                         {children}
@@ -35,8 +35,8 @@ const DashboardLayout = ({ children, variant, scroll }: { children: React.ReactN
             return (
                 <div>
                     <BannerInstaller close={close} setClose={setClose} />
-                    <Navbar close={close} scroll={scroll} />
-                    <div className="p-8">
+                    <NavDashboard close={close} scroll={scroll} />
+                    <div className={padding ? padding : 'p-8'}>
                         {children}
                     </div>
                 </div>

@@ -2,7 +2,6 @@
 
 import Button from "@components/button";
 import Links from "@components/link";
-import ModalMoreHistorial from "@components/modal/historial/more";
 import Text from "@components/text";
 import Image from "next/image";
 import { SetStateAction, useState } from "react";
@@ -59,7 +58,7 @@ const HistorialCard = ({
                         <Button variant="clear" type="button" onClick={() => setOpen(!open)}>
                             <IoMdMore className="text-white text-lg" />
                         </Button>
-                        <div className="absolute p-2 right-14 mt-6">
+                        {/* <div className="absolute p-2 right-14 mt-6">
                             {
                                 open &&
                                 <ModalMoreHistorial
@@ -68,7 +67,7 @@ const HistorialCard = ({
                                     setOpenReembolso={setOpenReembolso}
                                 />
                             }
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">

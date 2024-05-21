@@ -43,10 +43,10 @@ const NavDashboard = ({ scroll, close }: { scroll?: boolean, close: boolean }) =
     return (
         <>
             <nav className={`${state.isScrolled || scroll === false ? 'bg-base-dark border-b border-stroke-primary' : ' bg-transparent border-b border-transparent'} w-full z-50 transition-all duration-300 py-6`}>
-                {
+                {/* {
                     pathname.includes('aprender') || pathname.includes('prueba') &&
                     <div style={{ width: `${50}%` }} className={`absolute ${close ? 'top-24' : 'top-40'} -mt-2 rounded-3xl left-0 h-[2px] bg-gradient-to-r from-base-dark via-purple-main to-white`} />
-                }
+                } */}
                 <Layout variant="dashboard">
                     <div className="flex flex-row items-center w-full justify-between">
                         <Link href={'/'} className="relative w-full h-full">
