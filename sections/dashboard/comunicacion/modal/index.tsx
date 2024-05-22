@@ -15,7 +15,6 @@ const ModalComunicacion = ({
     setState: Dispatch<SetStateAction<{ id: number, open: boolean, status: boolean, page: number, answer: string }>>,
 }) => {
     const { register, formState: { errors } } = useForm()
-    console.log(state.id)
     return (
         <Modal
             onClick={() => { }}

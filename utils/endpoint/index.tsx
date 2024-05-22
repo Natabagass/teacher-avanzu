@@ -8,7 +8,7 @@ export const URL_WEB = process.env.NEXT_PUBLIC_URL
 // USERS
 export const USERS_LOGIN = 'users/teacher/login'
 export const USERS_VERIFY = 'users/_verify'
-export const USERS = 'users'
+export const USERS = 'users/me'
 export const USERS_PROFILE_PICTURE = 'users/_uploadProfilePicture'
 export const USERS_BACKGROUND_PHOTO = 'users/_uploadBackgroundPhoto'
 export const USERS_DELETE_BACKGROUND_PHOTO = 'users/_deleteBackgroundPhoto'

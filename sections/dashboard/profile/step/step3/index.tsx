@@ -3,7 +3,7 @@ import Input from "@components/input";
 import Text from "@components/text";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useModal } from "@hooks/modal-global";
-import { socialMediaSchema, SocialMediaSchema } from "data/types/schema/social-media";
+import { socialMediaSchema, SocialMediaSchema } from "data/schema/social-media";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BiLoaderCircle } from "react-icons/bi";
 

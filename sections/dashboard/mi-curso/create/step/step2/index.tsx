@@ -82,8 +82,6 @@ const CrearCursoStep2 = ({
         setPage(newModuleId);
     };
 
-    console.log(selectedFiles)
-
     // const updateModuleTitle = (index: number, title: string) => {
     //     const newModules = [...modules];
     //     newModules[index].title = title;
@@ -92,7 +90,6 @@ const CrearCursoStep2 = ({
 
     const addLesson = (moduleIndex: number) => {
         const newModules = [...modules];
-        console.log(newModules)
         const newLessonIndex = newModules[moduleIndex].lessons.length + 1;
         newModules[moduleIndex].lessons.push(defaultLesson(newLessonIndex));
         setModules(newModules);

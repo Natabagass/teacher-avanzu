@@ -6,14 +6,14 @@ import Text from "@components/text";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useModal } from "@hooks/modal-global";
 import CheckPassword from "@utils/check-password";
-import { passwordChangeSchema, PasswordChangeSchema } from "data/types/schema/password-change";
+import { passwordChangeSchema, PasswordChangeSchema } from "data/schema/profile/contrasena";
 import { signOut } from "next-auth/react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { BiLoaderCircle } from "react-icons/bi";
 import { CiLock } from "react-icons/ci";
 
-const PasswordChange = () => {
+const ConfiguracionPercidad = () => {
 
     const { register, formState: { errors, isSubmitting }, handleSubmit, watch, setError, control } = useForm<PasswordChangeSchema>({
         resolver: zodResolver(passwordChangeSchema),
@@ -60,62 +60,34 @@ const PasswordChange = () => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className="flex w-full mt-8 gap-4 flex-col">
-                <Input
-                    leftIcon={false}
-                    register={register}
-                    error={errors}
-                    variant="password"
-                    setShow={setCrPwd}
-                    show={crPwd}
-                    name="currentPassword"
-                    label="Contraseña actual"
-                />
-
-                <div className="flex flex-row w-full gap-3">
-                    <div className="w-full flex flex-col">
-                        <Input
-                            register={register}
-                            error={errors}
-                            variant="password"
-                            name="password"
-                            labelStyle="mt-4"
-                            leftIcon={true}
-                            show={pwd}
-                            icon={<CiLock className="text-content-secondary text-xl" />}
-                            setShow={setPwd}
-                            label="Contraseña"
+                <div className="flex flex-col w-full gap-4">
+                    <div className="flex flex-row items-center w-full gap-3">
+                        <input
+                            type="checkbox"
+                            id={'show-profile'}
+                            name={'show-profile'}
+                            className="check-cart"
+                            value={'show-profile'}
+                        // checked={checkedItems[item.name] || false}
+                        // onChange={() => handleCheckboxChange(item.name)}
                         />
-                        {
-                            !errors.password && watch('password') !== undefined && watch('password') !== "" &&
-                            <CheckPassword password={watch('password')} />
-                        }
+                        <label htmlFor={'show-profile'}>
+                            <Text weight="font-medium" size="p2">Muestra tu perfil a los usuarios conectados.</Text>
+                        </label>
                     </div>
-                    <div className="w-full flex flex-col gap-2">
-                        <Input
-                            register={register}
-                            error={errors}
-                            variant="password"
-                            name="passwordConfirmation"
-                            labelStyle="mt-4"
-                            leftIcon={true}
-                            show={pwdConfirm}
-                            icon={<CiLock className="text-content-secondary text-xl" />}
-                            setShow={setPwdConfirm}
-                            label="Confirm Contraseña"
+                    <div className="flex flex-row items-center w-full gap-3">
+                        <input
+                            type="checkbox"
+                            id={'course-taking'}
+                            name={'course-taking'}
+                            className="check-cart"
+                            value={'course-taking'}
+                        // checked={checkedItems[item.name] || false}
+                        // onChange={() => handleCheckboxChange(item.name)}
                         />
-                        {
-                            watch('passwordConfirmation') !== "" && watch('passwordConfirmation') !== undefined ?
-                                (watch('password') === watch('passwordConfirmation')) ?
-                                    <Text weight="font-medium" size="p3" className="mt-1" color="text-green-200">
-                                        Coincidencia de contraseña
-                                    </Text>
-                                    :
-                                    <Text weight="font-medium" size="p3" className="mt-1" color="text-red-300">
-                                        La contraseña no coincide
-                                    </Text>
-                                :
-                                null
-                        }
+                        <label htmlFor={'course-taking'}>
+                            <Text weight="font-medium" size="p2">Muestra los cursos que estás tomando en tu página de perfil</Text>
+                        </label>
                     </div>
                 </div>
 
@@ -135,7 +107,7 @@ const PasswordChange = () => {
                                 </div>
                                 :
                                 'Actualizar el perfil'
-                        }                    
+                        }
                     </Button>
                 </div>
             </form>
@@ -143,4 +115,4 @@ const PasswordChange = () => {
     );
 }
 
-export default PasswordChange;
+export default ConfiguracionPercidad;

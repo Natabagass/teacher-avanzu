@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useModal } from '@hooks/modal-global';
 
-const FileUploader = ({ onFileSelect, setPhoto, setSelectedFile, id }: { id: string, setSelectedFile: any, onFileSelect: any, setPhoto: any }) => {
+const FileUploader = ({ onFileSelect, setPhoto, setSelectedFile, setOpen, id }: { id: string, setSelectedFile: any, onFileSelect: any, setPhoto: any, setOpen?: any }) => {
     const fileInput: any = useRef(null);
     const { setModal } = useModal()
 
@@ -24,6 +24,7 @@ const FileUploader = ({ onFileSelect, setPhoto, setSelectedFile, id }: { id: str
                 function: () => {
                     setSelectedFile('')
                     setPhoto('')
+                    setOpen(false)
                 }
             })
         }

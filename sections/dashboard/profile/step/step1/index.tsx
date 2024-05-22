@@ -6,7 +6,7 @@ import { useProfile } from "@context/auth";
 import { Listbox } from "@headlessui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useModal } from "@hooks/modal-global";
-import { updateProfileSchema, UpdateProfileSchema } from "data/types/schema/update-profile";
+import { UpdateProfileSchema, updateProfileSchema } from "data/schema/update-profile";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { BiLoaderCircle } from "react-icons/bi";
 import { MdOutlineEmail } from "react-icons/md";

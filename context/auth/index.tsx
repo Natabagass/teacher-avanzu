@@ -6,6 +6,7 @@ import { useContext, useEffect, useState, createContext } from "react";
 export const UserContext = createContext({
     userInfo: {
         email: "",
+        code: 0,
         profilePicture: "",
         backgroundPicture: "",
         name: "",
@@ -25,6 +26,7 @@ export const UserContext = createContext({
 
 export const ProfileUserProvider = ({ children }: { children: React.ReactNode }) => {
     const [userInfo, setUserInfo] = useState({
+        code: 0,
         email: "",
         profilePicture: "",
         backgroundPicture: "",
@@ -43,7 +45,6 @@ export const ProfileUserProvider = ({ children }: { children: React.ReactNode })
     });
 
     const { data: user } = useSession()
-    console.log(user)
 
     const dataUser = async () => {
         try {

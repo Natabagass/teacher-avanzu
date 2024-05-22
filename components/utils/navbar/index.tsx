@@ -4,6 +4,7 @@ import BackButton from "@components/button/back";
 import ModalNotification from "@components/modal/home/notifications";
 import ModalProfile from "@components/modal/home/profile";
 import Text from "@components/text";
+import { useProfile } from "@context/auth";
 // import { useProfile } from "@context/auth";
 import Layout from "@layout/main-layout";
 import { URL_DUMMY_IMAGE } from "@utils/endpoint";
@@ -36,7 +37,7 @@ const NavDashboard = ({ scroll, close }: { scroll?: boolean, close: boolean }) =
         };
     }, [state]);
 
-    // const { userInfo } = useProfile()
+    const { userInfo } = useProfile()
     const pathname = usePathname()
     const splitUrl = pathname.split('/')
 
@@ -60,14 +61,13 @@ const NavDashboard = ({ scroll, close }: { scroll?: boolean, close: boolean }) =
                             <div
                                 onClick={() => setState({ ...state, profile: !state.profile })}
                                 className="rounded-full p-3 relative w-10 min-h-full">
-                                {/* <Image src={
-                                    userInfo.profilePicture === ''
-                                        ? userInfo.name === ''
-                                            ? `${URL_DUMMY_IMAGE}?name=user&size=120`
-                                            : `${URL_DUMMY_IMAGE}?name=${userInfo.name}&size=120`
-                                        : userInfo.profilePicture
-                                } alt="Person Image - (Avanzu)" fill className="object-cover rounded-full object-center" /> */}
-                                <Image src={`${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Person Image - (Avanzu)" fill className="object-cover rounded-full object-center" />
+                                <Image src={
+                                    userInfo.profilePicture && userInfo.profilePicture !== ''
+                                        ? userInfo.profilePicture
+                                        : userInfo.name && userInfo.name !== ''
+                                            ? `${URL_DUMMY_IMAGE}?name=${userInfo.name}&size=120`
+                                            : `${URL_DUMMY_IMAGE}?name=user&size=120`
+                                } alt="Person Image - (Avanzu)" fill className="object-cover rounded-full object-center" />
                             </div>
                         </div>
                     </div>
