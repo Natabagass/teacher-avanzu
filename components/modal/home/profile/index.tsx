@@ -47,16 +47,16 @@ const ModalProfile = ({
                     </div>
                     <div className="w-full bg-stroke-primary h-border" />
                     <div className="flex flex-col gap-4 px-6">
-                        <Link href={'/'}>
+                        <Link href={'/dashboard/configuracion-de-cuenta'}>
                             <Text size="p3" weight="font-medium" color="text-content-secondary">Configuración de cuenta</Text>
                         </Link>
                         <Link href={'/dashboard/perfil-publico'}>
                             <Text size="p3" weight="font-medium" color="text-content-secondary">Perfil público</Text>
                         </Link>
-                        <Link href={'/'}>
+                        <Link href={'/dashboard/editar-perfil'}>
                             <Text size="p3" weight="font-medium" color="text-content-secondary">Editar perfil</Text>
                         </Link>
-                        <Link href={'/'}>
+                        <Link href={'/editar-perfil'}>
                             <Text size="p3" weight="font-medium" color="text-content-secondary">Ayuda</Text>
                         </Link>
                     </div>

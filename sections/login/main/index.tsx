@@ -20,7 +20,7 @@ import { LuUser } from "react-icons/lu";
 const LoginPage = () => {
     const [show, setShow] = useState<boolean>(false)
     const [check, setCheck] = useState<boolean>(false)
-    // const { status } = useSession()
+    const { status } = useSession()
     const [loading, setLoading] = useState<boolean>(false)
     const router = useRouter()
     const { setModal } = useModal()
@@ -66,11 +66,11 @@ const LoginPage = () => {
         })
     };
 
-    // useEffect(() => {
-    //     if (status === "authenticated") {
-    //         router.push('/dashboard/hogar')
-    //     }
-    // }, [router, status])
+    useEffect(() => {
+        if (status === "authenticated") {
+            router.push('/dashboard/hogar')
+        }
+    }, [router, status])
 
     return (
         <>
@@ -134,7 +134,7 @@ const LoginPage = () => {
                         </div>
 
                         <Button
-                            disable={ !isValid || loading}
+                            disable={ !isValid || loading }
                             type="submit"
                             variant="primary"
                             className="w-full mt-8"
@@ -150,12 +150,6 @@ const LoginPage = () => {
                                     'REGISTRAR AHORA'
                             }
                         </Button>
-
-                        <div className="flex items-center my-8 flex-row gap-4">
-                            <div className="w-full h-border bg-stroke-primary" />
-                            <Text className="font-inter" weight="font-normal" size="p3" color="text-stroke-primary">OR</Text>
-                            <div className="w-full h-border bg-stroke-primary" />
-                        </div>
 
                         {/* <div className="w-full flex gap-4 flex-col">
                             <Button

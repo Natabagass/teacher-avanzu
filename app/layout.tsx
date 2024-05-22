@@ -6,6 +6,8 @@ import 'swiper/css/navigation';
 import 'react-datepicker/dist/react-datepicker.css';
 import "./globals.css";
 import { ModalProvider } from "@hooks/modal-global";
+import NextAuthProvider from "config/auth/providers";
+import { ProfileUserProvider } from "@context/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,13 +24,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>        
-        {/* <NextAuthProvider>
-            <ProfileUserProvider> */}
+        <NextAuthProvider>
+            <ProfileUserProvider>
               <ModalProvider>
                 {children}
               </ModalProvider>
-            {/* </ProfileUserProvider>
-        </NextAuthProvider> */}
+            </ProfileUserProvider>
+        </NextAuthProvider>
         </body>
     </html>
   );

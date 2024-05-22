@@ -6,7 +6,7 @@ export const URL_DUMMY_IMAGE = process.env.NEXT_PUBLIC_URL_DUMMY_IMG
 export const URL_WEB = process.env.NEXT_PUBLIC_URL
 
 // USERS
-export const USERS_LOGIN = 'users/_login'
+export const USERS_LOGIN = 'users/teacher/login'
 export const USERS_VERIFY = 'users/_verify'
 export const USERS = 'users'
 export const USERS_PROFILE_PICTURE = 'users/_uploadProfilePicture'

@@ -1,5 +1,6 @@
 import Text from "@components/text";
 import { useModal } from "@hooks/modal-global";
+import { TbTrash } from "react-icons/tb";
 
 const ModalMoreNotif = () => {
     const { setModal } = useModal()
@@ -20,6 +21,10 @@ const ModalMoreNotif = () => {
     return (
         <div className="bg-purple-200 p-2 border border-stroke-primary rounded-lg">
             <div className="flex flex-col gap-2">
+                <div className="flex cursor-pointer flex-row items-center gap-2">
+                    <TbTrash className="text-xl text-white" />
+                    <Text weight="font-medium" size="p3">Marcar como leído</Text>
+                </div>
                 <div
                     onClick={() =>
                         setModal({
@@ -34,6 +39,7 @@ const ModalMoreNotif = () => {
                         })
                     }
                     className="flex cursor-pointer flex-row items-center gap-2">
+                    <TbTrash className="text-xl text-white" />
                     <Text weight="font-medium" size="p3">Borrar</Text>
                 </div>
             </div>
