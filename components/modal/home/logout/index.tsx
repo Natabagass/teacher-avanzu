@@ -8,7 +8,7 @@ const ModalLogout = ({ open, setOpen }: { open: boolean, setOpen: React.Dispatch
     const logout = async () => {
         await signOut({
             redirect: true,
-            callbackUrl: '/login'
+            callbackUrl: '/'
         })
     }
 
