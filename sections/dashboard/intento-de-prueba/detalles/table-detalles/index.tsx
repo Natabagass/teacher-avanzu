@@ -78,7 +78,7 @@ const TableDetalles = ({
                         <TableColumn variant="border">
                             <div className="w-full flex justify-center items-center flex-row gap-2">
                                 <Text variant="subTitle" weight="font-normal" size="p2" color={item.estado ? 'text-green-200' : 'text-red-300'}>
-                                    {item.estado ? 'Aprobar' : 'Fracasado'}
+                                    {item.estado ? 'Aprobado' : 'No Aprobado'}
                                 </Text>
                                 <div className="flex flex-col gap-2">
                                     <Button variant="clear" type="button" onClick={() => setOpen(!open)}>
@@ -109,6 +109,6 @@ export const Header = [
     'Estudiante',
     'Fecha Enviado',
     'Puntaje',
-    'Intentar',
+    'Intentos',
     'Estado',
 ]

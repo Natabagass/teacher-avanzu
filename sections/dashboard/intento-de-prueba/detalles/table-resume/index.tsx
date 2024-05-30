@@ -71,9 +71,9 @@ export default TableResume;
 
 export const Header = [
     'No',
-    'Tipo',
-    'Preguntas',
-    'Requesta dada',
+    'Cestionario',
+    'Pregunta',
+    'Requesta',
     'Respuesta Correcta',
     'Resultado'
 ]

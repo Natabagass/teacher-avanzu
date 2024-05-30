@@ -69,7 +69,7 @@ const TableIntento = () => {
                                 </TableColumn>
                                 <TableColumn className="w-[10%]">
                                     <Text variant="subTitle" weight="font-normal" size="p2" color={item.estado ? 'text-green-200' : 'text-red-300'}>
-                                        {item.estado? 'Aprobar' : 'Fracasado'}
+                                        {item.estado? 'Aprobado' : 'No aprobado'}
                                     </Text>
                                 </TableColumn>
                                 <TableColumn>
@@ -123,7 +123,7 @@ export const data = [
         quiz: 'Quiz 1 - React desde cero',
         email: 'devon@gmail.com',
         fecha: '20/01/2024',
-        intentar: '1 of 3',
+        intentar: '1 de 3',
         estado: true,
         progress: 80
     },
@@ -136,7 +136,7 @@ export const data = [
         quiz: 'Quiz 1 - React desde cero',
         email: 'devon@gmail.com',
         fecha: '20/01/2024',
-        intentar: '1 of 3',
+        intentar: '1 de 3',
         estado: true,
         progress: 100
     },
@@ -149,7 +149,7 @@ export const data = [
         quiz: 'Quiz 1 - React desde cero',
         email: 'devon@gmail.com',
         fecha: '20/01/2024',
-        intentar: '1 of 3',
+        intentar: '1 de 3',
         estado: false,
         progress: 60
     },
@@ -162,7 +162,7 @@ export const data = [
         quiz: 'Quiz 1 - React desde cero',
         email: 'devon@gmail.com',
         fecha: '20/01/2024',
-        intentar: '1 of 3',
+        intentar: '1 de 3',
         estado: true,
         progress: 80
     },
@@ -175,7 +175,7 @@ export const data = [
         quiz: 'Quiz 1 - React desde cero',
         email: 'devon@gmail.com',
         fecha: '20/01/2024',
-        intentar: '1 of 3',
+        intentar: '1 de 3',
         estado: false,
         progress: 75
     },
@@ -188,7 +188,7 @@ export const data = [
         quiz: 'Quiz 1 - React desde cero',
         email: 'devon@gmail.com',
         fecha: '20/01/2024',
-        intentar: '1 of 3',
+        intentar: '1 de 3',
         estado: true,
         progress: 100
     },
@@ -201,7 +201,7 @@ export const data = [
         quiz: 'Quiz 1 - React desde cero',
         email: 'devon@gmail.com',
         fecha: '20/01/2024',
-        intentar: '1 of 3',
+        intentar: '1 de 3',
         estado: true,
         progress: 80
     },
@@ -214,7 +214,7 @@ export const data = [
         quiz: 'Quiz 1 - React desde cero',
         email: 'devon@gmail.com',
         fecha: '20/01/2024',
-        intentar: '1 of 3',
+        intentar: '1 de 3',
         estado: false,
         progress: 20
     },
@@ -227,7 +227,7 @@ export const data = [
         quiz: 'Quiz 1 - React desde cero',
         email: 'devon@gmail.com',
         fecha: '20/01/2024',
-        intentar: '1 of 3',
+        intentar: '1 de 3',
         estado: true,
         progress: 100
     },
@@ -240,7 +240,7 @@ export const data = [
         quiz: 'Quiz 1 - React desde cero',
         email: 'devon@gmail.com',
         fecha: '20/01/2024',
-        intentar: '1 of 3',
+        intentar: '1 de 3',
         estado: true,
         progress: 100
     },
@@ -253,7 +253,7 @@ export const data = [
         quiz: 'Quiz 1 - React desde cero',
         email: 'devon@gmail.com',
         fecha: '20/01/2024',
-        intentar: '1 of 3',
+        intentar: '1 de 3',
         estado: true,
         progress: 80
     },

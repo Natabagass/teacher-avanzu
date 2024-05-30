@@ -98,10 +98,10 @@ const list = [
     },
     {
         id: 2,
-        text: 'Agregue etiquetas para ayudar a los estudiantes a encontrar su curso mientras buscan'
+        text: 'Agrega etiquetas para ayudar a los estudiantes a encontrar su curso mientras buscan'
     },
     {
         id: 3,
-        text: 'Elija la categoría que se ajuste a su curso'
+        text: 'Elige la categoría que se ajuste a tu curso'
     }
 ]

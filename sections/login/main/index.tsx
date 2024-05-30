@@ -91,7 +91,6 @@ const LoginPage = () => {
                 </div>
                 <Layout className="w-full justify-center flex-col items-center flex">
                     <Text variant="subTitle-sub" size="h3" weight="font-semibold" color="text-white">¡Hola, bienvenido de nuevo!</Text>
-                    <Text size="p2" weight="font-normal" color="text-content-secondary">Bienvenido de nuevo ,</Text>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="w-[70%] items-start text-left mt-8">
                         <Input
@@ -147,7 +146,7 @@ const LoginPage = () => {
                                         <BiLoaderCircle className="animate-spin text-stroke-primary text-lg" />
                                     </div>
                                     :
-                                    'REGISTRAR AHORA'
+                                    'INICIAR SESIÓN'
                             }
                         </Button>
 

@@ -26,7 +26,7 @@ const CardPregunta = ({
                 <div className="flex flex-row items-center w-full justify-between">
                     <Text size="h3" weight="font-semibold" color="text-white" variant="title">{data.title}</Text>
                     <div className={`${data.status === true ? 'border-orange-200' : 'border-green-200'} border border-orange-200 rounded-3xl px-2 py-1 bg-purple-200`}>
-                        <Text weight="font-medium" size="cpt1" color={`${data.status === true ? 'text-orange-200' : 'text-green-200'}`}>{data.status === false ? 'Contestada' : 'No leído'}</Text>
+                        <Text weight="font-medium" size="cpt1" color={`${data.status === true ? 'text-orange-200' : 'text-green-200'}`}>{data.status === false ? 'Leído' : 'No leído'}</Text>
                     </div>
                 </div>
                 <div className="flex flex-col bg-purple-100 p-3 rounded-xl w-full gap-4">

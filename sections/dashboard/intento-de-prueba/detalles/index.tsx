@@ -32,7 +32,7 @@ export default IntentoDetallespage;
 export const answer = [
     {
         row_num: 1,
-        intentar: '1 0f 3',
+        intentar: '1 de 3',
         preguntas: '¿Qué es el Virtual DOM en React?',
         respuesta_dada: 'Una herramienta de depuración para inspeccionar el estado de la aplicación.',
         respuesta_correcta: 'Una representación virtual de los componentes y elementos HTML en la memoria.',
@@ -40,7 +40,7 @@ export const answer = [
     },
     {
         row_num: 2,
-        intentar: '1 0f 3',
+        intentar: '1 de 3',
         preguntas: '¿Qué es el Virtual DOM en React?',
         respuesta_dada: 'Una herramienta de depuración para inspeccionar el estado de la aplicación.',
         respuesta_correcta: 'Una representación virtual de los componentes y elementos HTML en la memoria.',
@@ -48,7 +48,7 @@ export const answer = [
     },
     {
         row_num: 3,
-        intentar: '1 0f 3',
+        intentar: '1 de 3',
         preguntas: '¿Qué es el Virtual DOM en React?',
         respuesta_dada: 'Son los actos que el trabajador realiza en relación con el entorno laboral; sin perjudicarse a si mismo ni a un tercero.',
         respuesta_correcta: 'Una representación virtual de los componentes y elementos HTML en la memoria.',
@@ -56,7 +56,7 @@ export const answer = [
     },
     {
         row_num: 4,
-        intentar: '1 0f 3',
+        intentar: '1 de 3',
         preguntas: '¿Qué es el Virtual DOM en React?',
         respuesta_dada: 'Una herramienta de depuración para inspeccionar el estado de la aplicación.',
         respuesta_correcta: 'Una representación virtual de los componentes y elementos HTML en la memoria.',
@@ -73,7 +73,7 @@ const user = {
     quiz: 'Quiz 1 - React desde cero',
     email: 'devon@gmail.com',
     fecha: '20/01/2024',
-    intentar: '1 of 3',
+    intentar: '1 de 3',
     estado: true,
     progress: 80
 }

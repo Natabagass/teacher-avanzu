@@ -147,7 +147,7 @@ const menu = [
     },
     {
         id: 2,
-        name: 'Contestada'
+        name: 'Leído'
     }
 ]
 

@@ -187,7 +187,7 @@ export default CrearCursoStep1;
 export const dummy = [
     {
         id: 1,
-        name: 'Nuevo Curso'
+        name: 'Principante'
     },
     {
         id: 2,

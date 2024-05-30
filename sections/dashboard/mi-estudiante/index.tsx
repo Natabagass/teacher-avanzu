@@ -34,7 +34,7 @@ const MiEstudiantePage = () => {
 
                 <div className="w-full flex flex-col gap-6">
                     <div className="w-full flex mt-8 flex-row justify-between">
-                        <Text size="h3" variant="title" weight="font-semibold">Mi Estudiantes</Text>
+                        <Text size="h3" variant="title" weight="font-semibold">Mis Estudiantes</Text>
                         <div>
                             <Button size="btn1" type="button" padding="px-6 py-4" variant="primary" className="flex flex-row w-full gap-2">
                                 <TbDownload />
