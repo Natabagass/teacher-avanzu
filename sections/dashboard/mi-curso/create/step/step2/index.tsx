@@ -57,7 +57,7 @@ const CrearCursoStep2 = ({
     const [page, setPage] = useState(1)
     const [openModule, setOpenModules] = useState(0)
     const { data: session } = useSession();
-    const [moduleTitle, setModuleTitle] = useState(false)
+    const [moduleTitle, setModuleTitle] = useState(0)
     const [loading, setLoading] = useState(false)
 
     const defaultLesson = (index: number): Lesson => ({
@@ -155,6 +155,7 @@ const CrearCursoStep2 = ({
     };
 
     console.log(JSON.stringify(modules))
+    console.log(moduleTitle)
 
     return (
         <>
@@ -162,32 +163,45 @@ const CrearCursoStep2 = ({
                 <div className="flex flex-row w-full max-w-full overflow-auto gap-4">
                     {
                         modules.map((item) => (
-                            <div onClick={() => setPage(item.order)} key={item.order} className="flex cursor-pointer flex-col items-center w-[20%] gap-3">
-                                <div onClick={() => setModuleTitle(true)} className="flex flex-row w-full justify-center items-center gap-3">
+                            <div onClick={() => {
+                                setPage(item.order)
+                                if (moduleTitle !== 0) {
+                                    setModuleTitle(0);
+                                }
+                            }} key={item.order} className={`flex-col flex cursor-pointer items-center w-[20%] gap-3`}>
+                                <div className="flex flex-row w-full justify-center items-center gap-3">
                                     {
-                                        moduleTitle ?
+                                        moduleTitle === item.order ?
                                             <div className="relative w-full">
                                                 <input
                                                     type="text"
-                                                    className='bg-transparent outline-none px-6 py-3 text-sm placeholder:text-sm text-white w-full'
+                                                    className='bg-transparent outline-none px-6 py-0 text-sm placeholder:text-sm text-white w-full'
                                                     placeholder="Módulo de título"
                                                     onChange={(e) => updateModuleTitle(page - 1, e.target.value)}
                                                 />
-                                                <span onClick={() => setModuleTitle(false)} className='absolute right-4 inset-y-3.5'>
+                                                <span
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setModuleTitle(0);
+                                                    }}
+                                                    className='absolute right-4 z-50 inset-y-1 cursor-pointer'
+                                                >
                                                     <RxCross2 className="text-white text-xl" />
                                                 </span>
                                             </div>
                                             :
-                                            <>
+                                            <div className="flex flex-row gap-2">
                                                 <Text size="p3" weight="font-medium" className="whitespace-nowrap" color={page === item.order ? 'text-purple-blue-500' : 'text-content-secondary'}>{item.title}</Text>
+                                                <div onClick={() => setModuleTitle(item.order)}>
                                                 {
                                                     page === item.order &&
                                                     <TbPencil className="text-purple-blue-500 text-xl" />
                                                 }
-                                            </>
+                                                </div>
+                                            </div>
                                     }
                                 </div>
-                                <div className={`w-full h-border ${page === item.order ? 'bg-purple-blue-500 relative z-20' : 'bg-content-secondary'}`} />
+                                <div className={`h-border w-full ${ moduleTitle === item.order ? 'bg-purple-blue-500' : 'bg-transparent'} ${page === item.order? 'bg-purple-blue-500 relative z-20' : 'bg-content-tertiary'}`} />
                             </div>
                         ))
                     }
