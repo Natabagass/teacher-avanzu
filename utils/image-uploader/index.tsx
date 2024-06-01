@@ -28,6 +28,28 @@ const FileUploader = ({ onFileSelect, setPhoto, setSelectedFile, setOpen, id }: 
                 }
             })
         }
+
+        // const img = new Image();
+        // img.src = URL.createObjectURL(file);
+
+        // img.onload = () => {
+        //     if (img.width === 200 && img.height === 200) {
+        //         setPhoto(URL.createObjectURL(file));
+        //         onFileSelect(file);
+        //     } else {
+        //         setModal({
+        //             type: 'fail',
+        //             placement: 'center',
+        //             title: 'Fallido',
+        //             desc: 'Las dimensiones de la imagen deben ser 200x200',
+        //             function: () => {
+        //                 setSelectedFile('');
+        //                 setPhoto('');
+        //                 setOpen(false);
+        //             }
+        //         });
+        //     }
+        // };
     };
 
     return (

@@ -5,9 +5,11 @@ import { Listbox } from "@headlessui/react";
 import CheckboxInput from "@utils/checkbox-input";
 import FileUploader from "@utils/image-uploader";
 import TagInput from "@utils/input-tag";
+import { submitFile } from "app/api/utils/upload_file";
 import { CreateCourseSchema } from "data/schema/create-course";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Controller, FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { HiOutlineSparkles } from "react-icons/hi";
 import { PiCurrencyDollarSimple } from "react-icons/pi";
@@ -21,6 +23,7 @@ type Props<T extends FieldValues> = {
     setSelectedFile: any,
     selectedFile: any,
     watch: any,
+    setValue: any,
     register: UseFormRegister<T>;
     error: FieldErrors;
     control: any;
@@ -33,6 +36,7 @@ const CrearCursoStep1 = ({
     photo,
     setPhoto,
     watch,
+    setValue,
     setSelectedFile,
     selectedFile,
     resetField,
@@ -40,9 +44,38 @@ const CrearCursoStep1 = ({
     error,
     control
 }: Props<CreateCourseSchema>) => {
+    const [identifier, setIdentifier] = useState('')
+    const { data: session } = useSession();
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+    const [loading, setLoading] = useState(false)
+
+    const handleFileSubmit = async () => {
+        if (session) {
+            const token = session.user.token;
+            const res = await submitFile(token, formData, setLoading);
+            setIdentifier(res.identifier)
+        } else {
+            console.error('User is not authenticated');
+        }
+    };
+
+    useEffect(() => {
+        if (selectedFile !== '') {
+            handleFileSubmit();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedFile]);
+
+    useEffect(() => {
+        if (identifier) {
+            setValue('image', identifier);
+        } 
+    }, [setValue, identifier]);
+
     return (
         <div className="flex flex-col w-full gap-4">
-            <div className="flex flex-row w-full bg-purple-100 p-4 rounded-2xl justify-between">
+            {/* <div className="flex flex-row w-full bg-purple-100 p-4 rounded-2xl justify-between">
                 <div className="flex items-center flex-row w-full gap-3">
                     <TbLock className="text-white text-xl" />
                     <Text size="p2" weight="font-medium" variant="subTitle">Hacer el curso privado</Text>
@@ -51,7 +84,7 @@ const CrearCursoStep1 = ({
                     <input type="checkbox" value="" className="sr-only peer" />
                     <div className="relative w-11 h-6 bg-purple-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-neon-green-500"></div>
                 </label>
-            </div>
+            </div> */}
             <div className="flex flex-col w-full gap-2">
                 <Text size="p3" weight="font-normal" color="text-content-secondary">Miniatura del curso</Text>
                 <label htmlFor="banner">
@@ -94,6 +127,7 @@ const CrearCursoStep1 = ({
             />
             <CheckboxInput
                 label="Categoría"
+                register={register}
             />
             <TagInput 
                 error={error}
@@ -107,7 +141,7 @@ const CrearCursoStep1 = ({
             <Controller
                 control={control}
                 name='type'
-                defaultValue={'Nuevo Curso'}
+                defaultValue={'Principante'}
                 render={({ field: { onChange, value, ref } }) => (
                     <Select
                         label="Curso de nivel"
@@ -155,7 +189,7 @@ const CrearCursoStep1 = ({
             <div className="flex flex-row w-full justify-between">
                 <Text size="p2" weight="font-medium" variant="title">Precios</Text>
                 <label className="inline-flex items-center cursor-pointer">
-                    <input type="checkbox" name="price" value="" className="sr-only peer" />
+                    <input type="checkbox" { ...register('free') } className="sr-only peer" />
                     <Text size="p3" weight="font-normal" className="mr-2" color="text-content-secondary">Gratis</Text>
                     <div className="relative w-11 h-6 bg-purple-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-neon-green-500"></div>
                     <Text size="p3" weight="font-normal" className="ml-2" color="text-content-secondary">Pagado</Text>

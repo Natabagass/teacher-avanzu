@@ -16,10 +16,8 @@ const CrearCursoPage = () => {
     const [photo, setPhoto] = useState('')
     const [selectedFile, setSelectedFile] = useState('')
     const [video, setVideo] = useState('')
-    const [selectedVideo, setSelectedVideo] = useState('')
     const [files, setFiles] = useState('')
-    const [selectedFiles, setSelectedFiles] = useState('')
-    const { register, formState: { errors }, resetField, control, watch } = useForm<CreateCourseSchema>({
+    const { register, formState: { errors }, resetField, setValue, control, watch } = useForm<CreateCourseSchema>({
         resolver: zodResolver(createCourseSchema),
         mode: 'onChange'
     })
@@ -32,15 +30,12 @@ const CrearCursoPage = () => {
     }
 
     const { next, prev, step: stepElement, currentStepIndex, goto } = useMultiStep([
-        <CrearCursoStep1 key={1} resetField={resetField} control={control} watch={watch} register={register} error={errors} setSelectedFile={setSelectedFile} selectedFile={selectedFile} photo={photo} setPhoto={setPhoto} next={handleNext} goto={handleGoto} />,
+        <CrearCursoStep1 key={1} setValue={setValue} resetField={resetField} control={control} watch={watch} register={register} error={errors} setSelectedFile={setSelectedFile} selectedFile={selectedFile} photo={photo} setPhoto={setPhoto} next={handleNext} goto={handleGoto} />,
         <CrearCursoStep2 
             key={2} 
+            setValue={setValue}
             setVideo={setVideo} 
-            selectedVideo={selectedVideo} 
-            setSelectedVideo={setSelectedVideo} 
-            selectedFiles={selectedFiles} 
             setFiles={setFiles}
-            setSelectedFiles={setSelectedFiles} 
             watch={watch} 
             register={register} 
             error={errors} 

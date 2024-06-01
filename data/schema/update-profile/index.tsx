@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 export const updateProfileSchema = z.object({
-    email: z.string().email('El correo electrónico es invalido').optional(),
     firstName: z.string().optional(),
     name: z.string().optional(),
     lastName: z.string().optional(),

@@ -17,3 +17,9 @@ export const USERS_SOCIAL = 'users/socials'
 
 // NOTIFICATIONS
 export const NOTIFICATION_GET = 'notifications'
+
+// COURSES
+export const COURSES = 'courses'
+
+// FILE
+export const FILES = 'files'

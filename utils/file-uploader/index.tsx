@@ -10,7 +10,7 @@ const FilesUpload = ({ onFileSelect, setFiles, setSelectedFile, id }: { id: stri
 
     const handleFileInput = (e: any) => {
         const file = e.target.files[0];
-        const size = Math.floor(file.size / (1024 * 1024));
+        const size = Math.floor(file?.size / (1024 * 1024));
         if (size < 150000) {
             setLoading(true);
             setFiles(URL.createObjectURL(e.target.files[0]));

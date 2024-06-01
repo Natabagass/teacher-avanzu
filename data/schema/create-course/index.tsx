@@ -1,9 +1,32 @@
 import { z } from "zod";
 
+const lessonSchema = z.object({
+    title: z.string().min(1, { message: 'Título es requerido' }),
+    description: z.string().min(1, { message: 'Descripción es requerido' }),
+    video: z.string(),
+    attachment: z.string(),
+    order: z.number().int().min(1, { message: 'Se requiere orden' }),
+});
+
+// Define the schema for a module
+const moduleSchema = z.object({
+    title: z.string().min(1, { message: 'Título es requerido' }),
+    order: z.number().int().min(1, { message: 'Se requiere orden' }),
+    lessons: z.array(lessonSchema)
+});
+
 export const createCourseSchema = z.object({
-    email: z.string().min(1, { message: 'Correo electronico es requerido' }).email('El correo electrónico es invalido'),
-    password: z.string().min(1, { message: 'Se requiere contraseña' }),
-    rememberMe: z.coerce.boolean().optional()
+    thumbnail: z.string(),
+    title: z.string().min(1, { message: 'Título es requerido' }),
+    description: z.string().min(1, { message: 'Descripción es requerido' }),
+    hashtags: z.string().min(1, { message: 'Título es requerido' }),
+    type: z.enum(["Principante", "Intermedio", "Avanzado", "Advanced", "Beginner", "Intermedio"], {
+        errorMap: (issues, ctx) => ({ message: 'Seleccione el tipo primero' }),
+    }),
+    categroies: z.array(z.string()).nonempty({ message: 'La categoria es requerida' }),
+    free: z.boolean({ required_error: "Se requiere gratis" }),
+    price: z.number().min(1, { message: 'Se requiere precio' }),
+    modules: z.array(moduleSchema)
 })
 
 export type CreateCourseSchema = z.infer<typeof createCourseSchema>

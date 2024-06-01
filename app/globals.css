@@ -378,3 +378,22 @@ body::-webkit-scrollbar {
     width: 0;
     height: 0;
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #1f1826;
+    border-radius: 5px;
+    transition: all 400ms ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #3d2b50;
+}

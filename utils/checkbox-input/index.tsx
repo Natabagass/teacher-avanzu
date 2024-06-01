@@ -2,21 +2,27 @@
 
 import ModalCheckboxInput from "@components/modal/checkbox-input";
 import Text from "@components/text";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
 
 const CheckboxInput = ({
     hide,
     label,
-    labelStyle
+    labelStyle,
+    register
 }: {
     label?: string,
     labelStyle?: string,
-    hide?: boolean
+    hide?: boolean,
+    register?: any
 }) => {
     const [showModal, setShowModal] = useState(false);
     const [checkedItems, setCheckedItems] = useState<string[]>([]);
-    const selectedCategories = Object.keys(checkedItems).filter((item: any) => checkedItems[item]);
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+
+    useEffect(() => {
+        setSelectedCategories(Object.keys(checkedItems).filter((item: any) => checkedItems[item]))
+    }, [checkedItems])
 
     const toggleModal = () => {
         setShowModal(!showModal);
@@ -30,6 +36,7 @@ const CheckboxInput = ({
         });
     };
 
+    console.log(selectedCategories)
 
     return (
         <div className="flex flex-col w-full">
@@ -65,6 +72,11 @@ const CheckboxInput = ({
                             </div>
                     }
                 </div>
+                <input
+                    className="hidden"
+                    value={selectedCategories}
+                    {...register('categories')}
+                />
                 <ModalCheckboxInput
                     show={showModal}
                     onClose={toggleModal}

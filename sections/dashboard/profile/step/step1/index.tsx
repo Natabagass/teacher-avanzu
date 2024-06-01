@@ -117,6 +117,7 @@ const ProfilChange = (
                         leftIcon={true}
                         defaultValue={data.email}
                         name="email"
+                        disable
                         icon={<MdOutlineEmail className="text-content-secondary text-xl" />}
                         label="Nombre de usuario o correo electrónico"
                     />
