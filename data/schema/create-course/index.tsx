@@ -1,17 +1,17 @@
 import { z } from "zod";
 
 const lessonSchema = z.object({
-    title: z.string().min(1, { message: 'Título es requerido' }),
-    description: z.string().min(1, { message: 'Descripción es requerido' }),
+    title: z.string(),
+    description: z.string(),
     video: z.string(),
     attachment: z.string(),
-    order: z.number().int().min(1, { message: 'Se requiere orden' }),
+    order: z.number().int(),
 });
 
 // Define the schema for a module
 const moduleSchema = z.object({
-    title: z.string().min(1, { message: 'Título es requerido' }),
-    order: z.number().int().min(1, { message: 'Se requiere orden' }),
+    title: z.string(),
+    order: z.number(),
     lessons: z.array(lessonSchema)
 });
 

@@ -33,7 +33,7 @@ interface Lesson {
     order: number;
     description: string;
     video: string;
-    attachment: File | null;
+    attachment: string;
 }
 
 interface Module {
@@ -63,9 +63,9 @@ const CrearCursoStep2 = ({
     const defaultLesson = (index: number): Lesson => ({
         title: `${watch('title') ? watch('title') : `Lesson ${index}`}`,
         order: index,
-        description: `${watch('description')}`,
+        description: `${watch('description') ? watch('description') : ''}`,
         video: '',
-        attachment: null,
+        attachment: '',
     });
 
     const defaultModule = (id: number): Module => ({
@@ -74,7 +74,8 @@ const CrearCursoStep2 = ({
         lessons: [],
     });
 
-    const [modules, setModules] = useState<Module[]>([defaultModule(1)]);
+    const initialModules = watch('modules') ? JSON.parse(watch('modules')) : [];
+    const [modules, setModules] = useState<Module[]>(initialModules);
     const addModule = () => {
         const newModuleId = modules.length + 1;
         setModules([...modules, defaultModule(newModuleId)]);
@@ -154,8 +155,18 @@ const CrearCursoStep2 = ({
         }
     };
 
-    console.log(JSON.stringify(modules))
-    console.log(moduleTitle)
+    useEffect(() => {
+        if (modules) {
+            setValue('modules', JSON.stringify(modules))
+        }
+    }, [modules, setValue])
+
+    useEffect(() => {
+        const value = watch('modules')
+        setModules(JSON.parse(value))
+    }, [watch]);
+
+    console.log(modules)
 
     return (
         <>
@@ -177,6 +188,7 @@ const CrearCursoStep2 = ({
                                                     type="text"
                                                     className='bg-transparent outline-none px-6 py-0 text-sm placeholder:text-sm text-white w-full'
                                                     placeholder="Módulo de título"
+                                                    defaultValue={item.title}
                                                     onChange={(e) => updateModuleTitle(page - 1, e.target.value)}
                                                 />
                                                 <span
@@ -193,15 +205,15 @@ const CrearCursoStep2 = ({
                                             <div className="flex flex-row gap-2">
                                                 <Text size="p3" weight="font-medium" className="whitespace-nowrap" color={page === item.order ? 'text-purple-blue-500' : 'text-content-secondary'}>{item.title}</Text>
                                                 <div onClick={() => setModuleTitle(item.order)}>
-                                                {
-                                                    page === item.order &&
-                                                    <TbPencil className="text-purple-blue-500 text-xl" />
-                                                }
+                                                    {
+                                                        page === item.order &&
+                                                        <TbPencil className="text-purple-blue-500 text-xl" />
+                                                    }
                                                 </div>
                                             </div>
                                     }
                                 </div>
-                                <div className={`h-border w-full ${ moduleTitle === item.order ? 'bg-purple-blue-500' : 'bg-transparent'} ${page === item.order? 'bg-purple-blue-500 relative z-20' : 'bg-content-tertiary'}`} />
+                                <div className={`h-border w-full ${moduleTitle === item.order ? 'bg-purple-blue-500' : 'bg-transparent'} ${page === item.order ? 'bg-purple-blue-500 relative z-20' : 'bg-content-tertiary'}`} />
                             </div>
                         ))
                     }
@@ -278,6 +290,7 @@ const CrearCursoStep2 = ({
                                                         type="text"
                                                         className='border-stroke-primary bg-purple-100 outline-none px-6 py-3 placeholder:text-sm text-white border w-full rounded-3xl'
                                                         placeholder="Escribe el nombre de tu curso"
+                                                        defaultValue={sub.title}
                                                         onChange={(e) => updateLesson(page - 1, sub.order - 1, 'title', e.target.value)}
                                                     />
                                                 </div>
@@ -296,6 +309,7 @@ const CrearCursoStep2 = ({
                                                         className='border-stroke-primary bg-purple-100 outline-none px-6 py-3 placeholder:text-sm text-white border w-full rounded-3xl'
                                                         placeholder="Escribe la descripción de tu curso."
                                                         maxLength={300}
+                                                        defaultValue={sub.description}
                                                         onChange={(e) => updateLesson(page - 1, sub.order - 1, 'description', e.target.value)}
                                                     />
                                                     <div className="w-full flex justify-end">
@@ -315,7 +329,7 @@ const CrearCursoStep2 = ({
                                                     <div
                                                         className="flex flex-row w-full items-center gap-3">
                                                         {
-                                                            selectedFiles[`${page - 1}-${sub.order - 1}`] ?
+                                                            selectedFiles[`${page - 1}-${sub.order - 1}`] || sub.attachment ?
                                                                 <>
                                                                     <div className="flex flex-row w-full items-center justify-between">
                                                                         <div className="flex flex-row items-center w-full gap-2">
@@ -323,8 +337,15 @@ const CrearCursoStep2 = ({
                                                                                 <TbUpload className="text-white text-2xl" />
                                                                             </div>
                                                                             <div className="flex flex-col gap-2">
-                                                                                <Text size="p2" weight="font-semibold" variant="subTitle">{selectedFiles[`${page - 1}-${sub.order - 1}`]?.name || "File"}</Text>
-                                                                                <Text size="p3" weight="font-normal" color="text-content-secondary" variant="subTitle-sub">{Math.floor(selectedFiles[`${page - 1}-${sub.order - 1}`]?.size / (1024 * 1024)) || 0} MB</Text>
+                                                                                {
+                                                                                    selectedFiles[`${page - 1}-${sub.order - 1}`]?.name && sub.attachment ?
+                                                                                        <Text size="p2" weight="font-semibold" variant="subTitle">{sub.attachment}</Text>
+                                                                                        :
+                                                                                        <>
+                                                                                            <Text size="p2" weight="font-semibold" variant="subTitle">{selectedFiles[`${page - 1}-${sub.order - 1}`]?.name || "File"}</Text>
+                                                                                            <Text size="p3" weight="font-normal" color="text-content-secondary" variant="subTitle-sub">{Math.floor(selectedFiles[`${page - 1}-${sub.order - 1}`]?.size / (1024 * 1024)) || 0} MB</Text>
+                                                                                        </>
+                                                                                }
                                                                             </div>
                                                                         </div>
                                                                         {
@@ -355,26 +376,24 @@ const CrearCursoStep2 = ({
                             ))
                         )
                     }
-                    <input
-                        className="hidden"
-                        value={JSON.stringify(modules)}
-                        {...register('modules')}
-                    />
                 </div>
-                <div className="flex flex-row w-full mt-6 justify-end gap-3">
-                    {/* <Button size="btn2" variant="secondary-subtle" type="button" className="flex flex-row items-center gap-2" padding="px-6 py-4">
-                        <TbVideo className="text-xl text-white" />
-                        Agregar reunión de zoom
-                    </Button> */}
-                    <Button size="btn2" variant="secondary-subtle" type="button" className="flex flex-row items-center gap-2" padding="px-6 py-4">
-                        <TbStar className="text-xl text-white" />
-                        Agregar cuestionario
-                    </Button>
-                    <Button onClick={() => addLesson(page - 1)} size="btn2" variant="secondary-subtle" type="button" className="flex flex-row items-center gap-2" padding="px-6 py-4">
-                        <TbPlus className="text-xl text-white" />
-                        Agregar lección
-                    </Button>
-                </div>
+                {
+                    modules.length > 0 &&
+                    <div className="flex flex-row w-full mt-6 justify-end gap-3">
+                        {/* <Button size="btn2" variant="secondary-subtle" type="button" className="flex flex-row items-center gap-2" padding="px-6 py-4">
+                            <TbVideo className="text-xl text-white" />
+                            Agregar reunión de zoom
+                        </Button> */}
+                        <Button size="btn2" variant="secondary-subtle" type="button" className="flex flex-row items-center gap-2" padding="px-6 py-4">
+                            <TbStar className="text-xl text-white" />
+                            Agregar cuestionario
+                        </Button>
+                        <Button onClick={() => addLesson(page - 1)} size="btn2" variant="secondary-subtle" type="button" className="flex flex-row items-center gap-2" padding="px-6 py-4">
+                            <TbPlus className="text-xl text-white" />
+                            Agregar lección
+                        </Button>
+                    </div>
+                }
             </div>
         </>
     );

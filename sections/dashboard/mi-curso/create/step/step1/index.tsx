@@ -49,6 +49,7 @@ const CrearCursoStep1 = ({
     const formData = new FormData();
     formData.append('file', selectedFile);
     const [loading, setLoading] = useState(false)
+    console.log(watch('hashtags'))
 
     const handleFileSubmit = async () => {
         if (session) {
@@ -134,7 +135,8 @@ const CrearCursoStep1 = ({
                 label="Etiqueta"
                 placeholder="Escribe tu etiqueta"
                 register={register}
-                name="hashtag"
+                name="hashtags"
+                setValue={setValue}
                 resetField={resetField}
                 watch={watch}
             />

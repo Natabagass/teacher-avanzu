@@ -12,9 +12,11 @@ const Stepper = ({
     className,
     variant,
     next,
+    goto
 }: {
     step: number,
     steps: string[],
+    goto: (id: number) => void,
     className?: string,
     variant?: string,
     next: () => void
@@ -43,12 +45,43 @@ const Stepper = ({
                         }
                     </div>
                     <div className="flex flex-row justify-end items-center gap-4">
-                        <Links href="/dashboard/curso" padding="px-6 py-4" size="btn1" variant="secondary-subtle">
-                            Cancelar
-                        </Links>
-                        <Button onClick={() => next()} padding="px-6 py-4" type="button" size="btn1" variant="primary">
-                            Continuar
-                        </Button>
+                        {
+                            step === steps.length - 1 ?
+                                <Links href="/dashboard/curso" padding="px-6 py-4" size="btn1" variant="secondary-subtle">
+                                    Cancelar
+                                </Links>
+                                :
+                                <Button
+                                    onClick={() => goto(0)}
+                                    padding="px-6 py-4"
+                                    type="button"
+                                    size="btn1"
+                                    variant="secondary-subtle"
+                                >
+                                    Atrás
+                                </Button>
+                        }
+                        {
+                            step === steps.length - 1 ?
+                                <Button
+                                    onClick={() => next()}
+                                    padding="px-6 py-4"
+                                    type='button'
+                                    size="btn1"
+                                    variant="primary"
+                                >
+                                    Continuar
+                                </Button>
+                                :
+                                <Button
+                                    padding="px-6 py-4"
+                                    type='submit'
+                                    size="btn1"
+                                    variant="primary"
+                                >
+                                    Entregar
+                                </Button>
+                        }
                     </div>
                 </div>
             )

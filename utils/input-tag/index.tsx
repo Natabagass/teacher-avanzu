@@ -1,5 +1,7 @@
+'use client'
+
 import Text from '@components/text';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Controller, FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { z } from 'zod';
 
@@ -18,13 +20,15 @@ type Props<T extends FieldValues> = {
     labelStyle?: string,
     validationSchema?: z.ZodTypeAny,
     required?: false,
-    hide?: boolean
+    hide?: boolean,
+    setValue: any
 };
 
 const TagInput = ({
     className,
     leftIcon,
     label,
+    setValue,
     labelStyle,
     hide,
     padding,
@@ -39,8 +43,8 @@ const TagInput = ({
     watch
 }: Props<any>) => {
     const [tags, setTags] = useState<string[]>([]);
-    const inputValue = watch(`${name}`)?.trim();
-    const sanitizedValue = inputValue?.replace(/[#,]/g, '');
+    const [input, setInput] = useState('')
+    const sanitizedValue = input.trim().replace(/[#,]/g, '');
     const newTag = sanitizedValue;
     const combinedTagsLength = tags.map(tag => tag?.length).reduce((acc, cur) => acc + cur, 0);
 
@@ -59,6 +63,16 @@ const TagInput = ({
     const removeTag = (indexToRemove: number) => {
         setTags(tags.filter((_, index) => index !== indexToRemove));
     };
+    const tagsArray = tags.map((item) => item.replaceAll('#', ''))
+    const join = tagsArray.join(',')
+
+    useEffect(() => {
+        if (tags.length > 0) {
+            setValue('hashtags', join)
+        }
+    }, [join, setValue, tags.length])
+
+    console.log(watch('hashtags'))
 
     return (
         <div className="w-full">
@@ -86,14 +100,9 @@ const TagInput = ({
                 ))}
                 <input
                     type="text"
+                    onChange={(e) => setInput(e.target.value)}
                     placeholder={combinedTagsLength >= 20 ? 'Tu etiqueta está lleno' : 'Escribe tu etiqueta'}
                     className={`${className} ${leftIcon ? 'pl-12' : 'pl-4'} ${error?.[name] || error?.root?.[name] ? 'border-red-300' : 'border-stroke-primary'} ${color ? color : 'bg-purple-100'} outline-none ${padding ? padding : 'px-6 py-3'} placeholder:text-sm text-white flex-grow bg-transparent`}
-                    {...register(name, {
-                        required: required,
-                        validate: validationSchema
-                            ? (value) => validationSchema.safeParse(value).success
-                            : undefined,
-                    })}
                     disabled={combinedTagsLength >= 20}
                     onKeyDown={handleKeyDown}
                 />

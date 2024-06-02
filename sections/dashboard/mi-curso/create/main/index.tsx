@@ -7,17 +7,18 @@ import Layout from "@layout/main-layout";
 import { HiOutlineSparkles } from "react-icons/hi";
 import Text from "@components/text";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateCourseSchema, createCourseSchema } from "data/schema/create-course";
 import CrearCursoStep2 from "../step/step2";
+import { useModal } from "@hooks/modal-global";
 
 const CrearCursoPage = () => {
     const [photo, setPhoto] = useState('')
     const [selectedFile, setSelectedFile] = useState('')
     const [video, setVideo] = useState('')
     const [files, setFiles] = useState('')
-    const { register, formState: { errors }, resetField, setValue, control, watch } = useForm<CreateCourseSchema>({
+    const { register, formState: { errors }, resetField, setError, handleSubmit, setValue, control, watch } = useForm<CreateCourseSchema>({
         resolver: zodResolver(createCourseSchema),
         mode: 'onChange'
     })
@@ -28,6 +29,28 @@ const CrearCursoPage = () => {
     const handleGoto = (index: number) => {
         goto(index)
     }
+    const { setModal } = useModal()
+
+    const onSubmit: SubmitHandler<CreateCourseSchema> = async (data) => {
+        try {
+            const res = await fetch(`/api/courses`, {
+                method: 'POST',
+                body: JSON.stringify(data)
+            });
+            const datas = await res.json()
+            if (datas.code === 200) {
+                setModal({
+                    placement: 'center',
+                    type: 'success',
+                    button1: 'Mostrar Menos',
+                    subTitle: 'actualizar el éxito de las redes sociales',
+                })
+            }
+            setError('root', datas.errors)
+        } catch (error: any) {
+            setError('root', error.response.data.errors)
+        }
+    };
 
     const { next, prev, step: stepElement, currentStepIndex, goto } = useMultiStep([
         <CrearCursoStep1 key={1} setValue={setValue} resetField={resetField} control={control} watch={watch} register={register} error={errors} setSelectedFile={setSelectedFile} selectedFile={selectedFile} photo={photo} setPhoto={setPhoto} next={handleNext} goto={handleGoto} />,
@@ -44,11 +67,14 @@ const CrearCursoPage = () => {
         />,
     ])
 
+    console.log(errors)
+
     return (
-        <div className="flex flex-col w-full gap-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-8">
             <Stepper
                 next={handleNext}
                 variant="navbar"
+                goto={goto}
                 step={currentStepIndex + 1}
                 steps={["Curso detallado", "Configuración del módulo"]}
             />
@@ -80,7 +106,7 @@ const CrearCursoPage = () => {
                     }
                 </div>
             </div>
-        </div>
+        </form>
     );
 }
 
