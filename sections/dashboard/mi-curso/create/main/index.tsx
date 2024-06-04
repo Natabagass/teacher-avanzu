@@ -12,24 +12,34 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateCourseSchema, createCourseSchema } from "data/schema/create-course";
 import CrearCursoStep2 from "../step/step2";
 import { useModal } from "@hooks/modal-global";
+import { useRouter } from "next/navigation";
 
 const CrearCursoPage = () => {
     const [photo, setPhoto] = useState('')
     const [selectedFile, setSelectedFile] = useState('')
     const [video, setVideo] = useState('')
     const [files, setFiles] = useState('')
-    const { register, formState: { errors }, resetField, setError, handleSubmit, setValue, control, watch } = useForm<CreateCourseSchema>({
+    const { register, trigger, clearErrors, formState: { errors }, resetField, setError, handleSubmit, setValue, control, watch } = useForm<CreateCourseSchema>({
         resolver: zodResolver(createCourseSchema),
         mode: 'onChange'
     })
+
     const handleNext = async () => {
-        next()
+        const fields = fieldsForm.at(currentStepIndex)?.fields
+        const output = await trigger(fields as FieldName[], { shouldFocus: true })
+        window.scroll(0, 0)
+
+        if (output) {
+            next()
+            clearErrors()
+        }
     }
 
     const handleGoto = (index: number) => {
         goto(index)
     }
     const { setModal } = useModal()
+    const router = useRouter()
 
     const onSubmit: SubmitHandler<CreateCourseSchema> = async (data) => {
         try {
@@ -38,12 +48,15 @@ const CrearCursoPage = () => {
                 body: JSON.stringify(data)
             });
             const datas = await res.json()
-            if (datas.code === 200) {
+            if (datas.code === 200 || datas.code === 201) {
                 setModal({
                     placement: 'center',
                     type: 'success',
                     button1: 'Mostrar Menos',
-                    subTitle: 'actualizar el éxito de las redes sociales',
+                    subTitle: 'Curso de creación de éxito.',
+                    function: () => {
+                        router.push('/dashboard/mi-curso')
+                    }
                 })
             }
             setError('root', datas.errors)
@@ -52,22 +65,21 @@ const CrearCursoPage = () => {
         }
     };
 
+
     const { next, prev, step: stepElement, currentStepIndex, goto } = useMultiStep([
         <CrearCursoStep1 key={1} setValue={setValue} resetField={resetField} control={control} watch={watch} register={register} error={errors} setSelectedFile={setSelectedFile} selectedFile={selectedFile} photo={photo} setPhoto={setPhoto} next={handleNext} goto={handleGoto} />,
-        <CrearCursoStep2 
-            key={2} 
+        <CrearCursoStep2
+            key={2}
             setValue={setValue}
-            setVideo={setVideo} 
+            setVideo={setVideo}
             setFiles={setFiles}
-            watch={watch} 
-            register={register} 
-            error={errors} 
-            next={handleNext} 
+            watch={watch}
+            register={register}
+            error={errors}
+            next={handleNext}
             goto={handleGoto}
         />,
     ])
-
-    console.log(errors)
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-8">
@@ -125,4 +137,19 @@ const list = [
         id: 3,
         text: 'Elige la categoría que se ajuste a tu curso'
     }
+]
+
+type FieldName = keyof CreateCourseSchema
+
+export const fieldsForm = [
+    {
+        id: 'Step 1',
+        name: 'Module Type',
+        fields: ['thumbnail', 'type', 'title', 'description', 'categories', 'free', 'price', 'hashtags']
+    },
+    {
+        id: 'Step 2',
+        name: 'Lesson',
+        fields: ['modules']
+    },
 ]

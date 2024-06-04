@@ -59,11 +59,12 @@ const CrearCursoStep2 = ({
     const { data: session } = useSession();
     const [moduleTitle, setModuleTitle] = useState(0)
     const [loading, setLoading] = useState(false)
+    const value = watch('modules')
 
     const defaultLesson = (index: number): Lesson => ({
-        title: `${watch('title') ? watch('title') : `Lesson ${index}`}`,
+        title: `Lesson ${index}`,
         order: index,
-        description: `${watch('description') ? watch('description') : ''}`,
+        description: '',
         video: '',
         attachment: '',
     });
@@ -74,7 +75,7 @@ const CrearCursoStep2 = ({
         lessons: [],
     });
 
-    const initialModules = watch('modules') ? JSON.parse(watch('modules')) : [];
+    const initialModules = watch('modules') ? watch('modules') : []
     const [modules, setModules] = useState<Module[]>(initialModules);
     const addModule = () => {
         const newModuleId = modules.length + 1;
@@ -132,7 +133,6 @@ const CrearCursoStep2 = ({
         }
     };
 
-
     const handleFileSubmit = async (moduleIndex: number, lessonIndex: number, field: keyof Lesson, value: string | File | null) => {
         if (value) {
             const formData = new FormData();
@@ -157,16 +157,9 @@ const CrearCursoStep2 = ({
 
     useEffect(() => {
         if (modules) {
-            setValue('modules', JSON.stringify(modules))
+            setValue('modules', modules)
         }
     }, [modules, setValue])
-
-    useEffect(() => {
-        const value = watch('modules')
-        setModules(JSON.parse(value))
-    }, [watch]);
-
-    console.log(modules)
 
     return (
         <>
@@ -245,25 +238,32 @@ const CrearCursoStep2 = ({
                                                         setVideo={setVideo}
                                                         setSelectedFile={setSelectedVideo}
                                                     />
-                                                    <div className="flex flex-row items-center gap-3">
+                                                    <div className="flex flex-row w-full items-center gap-3">
                                                         {
                                                             selectedVideo[`${page - 1}-${sub.order - 1}`] ?
-                                                                <div className="flex flex-row w-full justify-between">
-                                                                    <div className="flex flex-row w-full gap-2">
+                                                                <div className="flex flex-row w-full items-center justify-between">
+                                                                    <div className="flex flex-row items-center w-full gap-2">
                                                                         <div className="rounded-full bg-purple-blue-500 p-3">
                                                                             <IoPlayOutline className="text-white text-2xl" />
                                                                         </div>
                                                                         <div className="flex flex-col gap-2">
-                                                                            <Text size="p2" weight="font-semibold" variant="subTitle">{selectedVideo[`${page - 1}-${sub.order - 1}`]?.name}</Text>
-                                                                            <Text size="p3" weight="font-normal" color="text-content-secondary" variant="subTitle-sub">{Math.floor(selectedVideo[`${page - 1}-${sub.order - 1}`]?.size / (1024 * 1024))} MB</Text>
+                                                                            {
+                                                                                selectedVideo[`${page - 1}-${sub.order - 1}`]?.name && sub.video ?
+                                                                                    <Text size="p2" weight="font-semibold" variant="subTitle">{sub.video}</Text>
+                                                                                    :
+                                                                                    <>
+                                                                                        <Text size="p2" weight="font-semibold" variant="subTitle">{selectedVideo[`${page - 1}-${sub.order - 1}`]?.name || "Video"}</Text>
+                                                                                        <Text size="p3" weight="font-normal" color="text-content-secondary" variant="subTitle-sub">{Math.floor(selectedVideo[`${page - 1}-${sub.order - 1}`]?.size / (1024 * 1024)) || 0} MB</Text>
+                                                                                    </>
+                                                                            }
                                                                         </div>
                                                                     </div>
-                                                                    <div>
-                                                                        {
-                                                                            loading &&
+                                                                    {
+                                                                        loading &&
+                                                                        <div className="flex justify-end">
                                                                             <BiLoader className="text-purple-blue-500 animate-spin text-2xl" />
-                                                                        }
-                                                                    </div>
+                                                                        </div>
+                                                                    }
                                                                 </div>
                                                                 :
                                                                 <>

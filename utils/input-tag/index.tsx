@@ -42,7 +42,7 @@ const TagInput = ({
     name,
     watch
 }: Props<any>) => {
-    const [tags, setTags] = useState<string[]>([]);
+    const [tags, setTags] = useState<string[]>(watch('tags') ? watch('tags') : []);
     const [input, setInput] = useState('')
     const sanitizedValue = input.trim().replace(/[#,]/g, '');
     const newTag = sanitizedValue;
@@ -54,7 +54,7 @@ const TagInput = ({
             if (sanitizedValue) {
                 if (combinedTagsLength + newTag.length <= 20) {
                     setTags([...tags, newTag]);
-                    resetField(`${name}`);
+                    setInput('')
                 }
             }
         }
@@ -69,10 +69,9 @@ const TagInput = ({
     useEffect(() => {
         if (tags.length > 0) {
             setValue('hashtags', join)
+            setValue('tags', tags)
         }
-    }, [join, setValue, tags.length])
-
-    console.log(watch('hashtags'))
+    }, [join, setValue, tags, tags.length])
 
     return (
         <div className="w-full">
@@ -86,20 +85,22 @@ const TagInput = ({
                 {label}
             </Text>
             <div className={`${tags.length > 0 ? 'p-1' : ''} flex flex-row items-center flex-wrap border border-stroke-primary rounded-3xl bg-purple-100 relative`}>
-                {tags.map((tag, index) => (
-                    <div key={index} className="flex items-center bg-purple-300 p-2 text-white rounded-full px-4 py-2 m-1 text-sm">
-                        <span>{tag}</span>
-                        <button
-                            type="button"
-                            className="ml-2 text-white"
-                            onClick={() => removeTag(index)}
-                        >
-                            &times;
-                        </button>
-                    </div>
-                ))}
+                {
+                        tags.map((tag, index) => (
+                            <div key={index} className="flex items-center bg-purple-300 p-2 text-white rounded-full px-4 py-2 m-1 text-sm">
+                                <span>{tag}</span>
+                                <button
+                                    type="button"
+                                    className="ml-2 text-white"
+                                    onClick={() => removeTag(index)}
+                                >
+                                    &times;
+                                </button>
+                            </div>
+                        ))}
                 <input
                     type="text"
+                    value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder={combinedTagsLength >= 20 ? 'Tu etiqueta está lleno' : 'Escribe tu etiqueta'}
                     className={`${className} ${leftIcon ? 'pl-12' : 'pl-4'} ${error?.[name] || error?.root?.[name] ? 'border-red-300' : 'border-stroke-primary'} ${color ? color : 'bg-purple-100'} outline-none ${padding ? padding : 'px-6 py-3'} placeholder:text-sm text-white flex-grow bg-transparent`}

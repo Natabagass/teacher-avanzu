@@ -46,7 +46,7 @@ const Stepper = ({
                     </div>
                     <div className="flex flex-row justify-end items-center gap-4">
                         {
-                            step === steps.length - 1 ?
+                            step === 1 ?
                                 <Links href="/dashboard/curso" padding="px-6 py-4" size="btn1" variant="secondary-subtle">
                                     Cancelar
                                 </Links>
@@ -62,7 +62,7 @@ const Stepper = ({
                                 </Button>
                         }
                         {
-                            step === steps.length - 1 ?
+                            step === 1 ?
                                 <Button
                                     onClick={() => next()}
                                     padding="px-6 py-4"

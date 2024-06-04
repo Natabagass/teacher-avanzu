@@ -9,12 +9,16 @@ const CheckboxInput = ({
     hide,
     label,
     labelStyle,
-    register
+    register,
+    setValue,
+    watch
 }: {
     label?: string,
     labelStyle?: string,
     hide?: boolean,
-    register?: any
+    register?: any,
+    setValue?: any,
+    watch?: any
 }) => {
     const [showModal, setShowModal] = useState(false);
     const [checkedItems, setCheckedItems] = useState<string[]>([]);
@@ -36,7 +40,13 @@ const CheckboxInput = ({
         });
     };
 
-    console.log(selectedCategories)
+    useEffect(() => {
+        if (selectedCategories.length > 0) {
+            setValue('categories', selectedCategories)
+        }
+    }, [selectedCategories, setValue])
+
+    const valueSelected = watch('categories')
 
     return (
         <div className="flex flex-col w-full">
@@ -51,8 +61,8 @@ const CheckboxInput = ({
             <div className="flex flex-col w-full relative">
                 <div onClick={() => toggleModal()} className="flex flex-row mt-2 items-center flex-wrap border border-stroke-primary rounded-3xl bg-purple-100 relative cursor-pointer">
                     {
-                        selectedCategories.length > 0 ?
-                            selectedCategories.map((tag: string, index: number) => {
+                        valueSelected?.length > 0 ?
+                            valueSelected?.map((tag: string, index: number) => {
                                 return (
                                     <div key={index} className="flex items-center bg-purple-300 text-xs text-white rounded-full px-4 py-2 m-1">
                                         <span>{tag}</span>
@@ -67,9 +77,25 @@ const CheckboxInput = ({
                                 )
                             })
                             :
-                            <div className="py-2 px-4 flex flex-row justify-between w-full items-center">
-                                <Text size="p3" weight="font-normal">-</Text>
-                            </div>
+                            selectedCategories.length > 0 ?
+                                selectedCategories.map((tag: string, index: number) => {
+                                    return (
+                                        <div key={index} className="flex items-center bg-purple-300 text-xs text-white rounded-full px-4 py-2 m-1">
+                                            <span>{tag}</span>
+                                            <button
+                                                type="button"
+                                                className="ml-2 text-white"
+                                                onClick={() => handleRemoveCategory(tag)}
+                                            >
+                                                &times;
+                                            </button>
+                                        </div>
+                                    )
+                                })
+                                :
+                                <div className="py-2 px-4 flex flex-row justify-between w-full items-center">
+                                    <Text size="p3" weight="font-normal">-</Text>
+                                </div>
                     }
                 </div>
                 <input

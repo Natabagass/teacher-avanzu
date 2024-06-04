@@ -49,7 +49,6 @@ const CrearCursoStep1 = ({
     const formData = new FormData();
     formData.append('file', selectedFile);
     const [loading, setLoading] = useState(false)
-    console.log(watch('hashtags'))
 
     const handleFileSubmit = async () => {
         if (session) {
@@ -70,7 +69,7 @@ const CrearCursoStep1 = ({
 
     useEffect(() => {
         if (identifier) {
-            setValue('image', identifier);
+            setValue('thumbnail', identifier);
         } 
     }, [setValue, identifier]);
 
@@ -121,13 +120,15 @@ const CrearCursoStep1 = ({
             <Input
                 register={register}
                 error={error}
-                name="nombre"
+                name="title"
                 label="Nombre del curso"
                 leftIcon={false}
                 placeholder="Escribe el nombre de tu curso"
             />
             <CheckboxInput
+                watch={watch}
                 label="Categoría"
+                setValue={setValue}
                 register={register}
             />
             <TagInput 
@@ -142,8 +143,8 @@ const CrearCursoStep1 = ({
             />
             <Controller
                 control={control}
-                name='type'
-                defaultValue={'Principante'}
+                name='level'
+                defaultValue={'Principiante'}
                 render={({ field: { onChange, value, ref } }) => (
                     <Select
                         label="Curso de nivel"
@@ -181,7 +182,7 @@ const CrearCursoStep1 = ({
                     placeholder="Escribe la descripción de tu curso."
                     error={error}
                     leftIcon={false}
-                    name="desc"
+                    name="description"
                     max={300}
                 />
                 <div className="w-full flex justify-end">
@@ -208,11 +209,11 @@ const CrearCursoStep1 = ({
                     icon={<PiCurrencyDollarSimple className="text-content-secondary text-xl" />}
                     placeholder="0.0"
                 />
-                <label className="inline-flex items-center cursor-pointer mt-8">
+                {/* <label className="inline-flex items-center cursor-pointer mt-8">
                     <input type="checkbox" value="" className="sr-only peer" />
                     <div className="relative w-11 h-6 bg-purple-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-neon-green-500"></div>
                     <Text size="p3" weight="font-normal" className="ml-2" color="text-content-secondary">Venta</Text>
-                </label>
+                </label> */}
             </div>
         </div>
     );
@@ -223,7 +224,7 @@ export default CrearCursoStep1;
 export const dummy = [
     {
         id: 1,
-        name: 'Principante'
+        name: 'Principiante'
     },
     {
         id: 2,
