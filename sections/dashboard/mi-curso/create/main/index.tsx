@@ -25,14 +25,15 @@ const CrearCursoPage = () => {
     })
 
     const handleNext = async () => {
-        const fields = fieldsForm.at(currentStepIndex)?.fields
-        const output = await trigger(fields as FieldName[], { shouldFocus: true })
-        window.scroll(0, 0)
+        next()
+        // const fields = fieldsForm.at(currentStepIndex)?.fields
+        // const output = await trigger(fields as FieldName[], { shouldFocus: true })
+        // window.scroll(0, 0)
 
-        if (output) {
-            next()
-            clearErrors()
-        }
+        // if (output) {
+        //     next()
+        //     clearErrors()
+        // }
     }
 
     const handleGoto = (index: number) => {
@@ -80,6 +81,8 @@ const CrearCursoPage = () => {
             goto={handleGoto}
         />,
     ])
+
+    console.log(errors)
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-8">

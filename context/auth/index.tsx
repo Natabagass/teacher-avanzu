@@ -45,6 +45,7 @@ export const ProfileUserProvider = ({ children }: { children: React.ReactNode })
     });
 
     const { data: user } = useSession()
+    console.log(user)
 
     const dataUser = async () => {
         try {

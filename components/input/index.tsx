@@ -50,7 +50,7 @@ const Input = ({
                     </Text>
                     <div className="w-full relative mt-2">
                         <textarea
-                            className={`${className} ${color ? color : 'bg-purple-100'} h-[150px] pl-4 pr-10 placeholder:text-sm bg-purple-100 outline-none py-3 text-white border border-stroke-primary w-full rounded-3xl`}
+                            className={`${className} ${color ? color : 'bg-purple-100'} ${error?.[name] || error?.root?.[name] ? 'border-red-300' : 'border-stroke-primary'} h-[150px] pl-4 pr-10 placeholder:text-sm bg-purple-100 outline-none py-3 text-white border w-full rounded-3xl`}
                             placeholder={placeholder}
                             readOnly={readOnly}
                             maxLength={max}
@@ -141,9 +141,9 @@ const Input = ({
                                 >
                                     {error?.root ?
                                         error?.root[name]
-                                        : (type === 'number' ?
-                                            `${name.charAt(0).toUpperCase() + name.slice(1).replaceAll('_', ' ')} is required`
-                                            : error?.[name].message)}
+                                        : (type === 'number' && error?.root || error?.[name] ?
+                                            `Se requiere ${name.charAt(0).toUpperCase() + name.slice(1).replaceAll('_', ' ')}`
+                                            : error?.[name]?.message)}
                                 </Text>
                             )
                         }
@@ -189,7 +189,7 @@ const Input = ({
                     </div>
                     <div className="flex flex-col">
                         {
-                            (error?.root || error?.[name]) && (
+                            (error?.root || error?.[name] || error) && (
                                 <Text
                                     weight="font-medium"
                                     className="mt-2"
@@ -198,9 +198,9 @@ const Input = ({
                                 >
                                     {error?.root ?
                                         error?.root[name]
-                                        : (type === 'number' ?
-                                            `${name.charAt(0).toUpperCase() + name.slice(1).replaceAll('_', ' ')} is required`
-                                            : error?.[name].message)}
+                                        : (type === 'number' && error?.root || error?.[name] ?
+                                            `Se requiere ${name.charAt(0).toUpperCase() + name.slice(1).replaceAll('_', ' ')}`
+                                            : error?.[name]?.message)}
                                 </Text>
                             )
                         }

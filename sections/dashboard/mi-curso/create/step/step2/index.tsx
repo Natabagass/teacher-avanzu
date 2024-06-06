@@ -5,6 +5,7 @@ import FilesUpload from "@utils/file-uploader";
 import VideoUploader from "@utils/video-uploader";
 import { submitFile } from "app/api/utils/upload_file";
 import { CreateCourseSchema } from "data/schema/create-course";
+import { Lesson, Module } from "data/types/interface/create-course";
 import { useSession } from "next-auth/react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FieldErrors, FieldValues, useForm, UseFormRegister } from "react-hook-form";
@@ -27,21 +28,6 @@ type Props<T extends FieldValues> = {
     // resetField: any
 };
 
-
-interface Lesson {
-    title: string;
-    order: number;
-    description: string;
-    video: string;
-    attachment: string;
-}
-
-interface Module {
-    title: string;
-    order: number;
-    lessons: Lesson[];
-}
-
 const CrearCursoStep2 = ({
     next,
     goto,
@@ -59,7 +45,6 @@ const CrearCursoStep2 = ({
     const { data: session } = useSession();
     const [moduleTitle, setModuleTitle] = useState(0)
     const [loading, setLoading] = useState(false)
-    const value = watch('modules')
 
     const defaultLesson = (index: number): Lesson => ({
         title: `Lesson ${index}`,
@@ -160,6 +145,8 @@ const CrearCursoStep2 = ({
             setValue('modules', modules)
         }
     }, [modules, setValue])
+
+    console.log(modules)
 
     return (
         <>
@@ -290,7 +277,7 @@ const CrearCursoStep2 = ({
                                                         type="text"
                                                         className='border-stroke-primary bg-purple-100 outline-none px-6 py-3 placeholder:text-sm text-white border w-full rounded-3xl'
                                                         placeholder="Escribe el nombre de tu curso"
-                                                        defaultValue={sub.title}
+                                                        defaultValue={modules[page - 1].lessons[sub.order - 1].title}
                                                         onChange={(e) => updateLesson(page - 1, sub.order - 1, 'title', e.target.value)}
                                                     />
                                                 </div>
@@ -309,7 +296,7 @@ const CrearCursoStep2 = ({
                                                         className='border-stroke-primary bg-purple-100 outline-none px-6 py-3 placeholder:text-sm text-white border w-full rounded-3xl'
                                                         placeholder="Escribe la descripción de tu curso."
                                                         maxLength={300}
-                                                        defaultValue={sub.description}
+                                                        defaultValue={modules[page - 1].lessons[sub.order - 1].description}
                                                         onChange={(e) => updateLesson(page - 1, sub.order - 1, 'description', e.target.value)}
                                                     />
                                                     <div className="w-full flex justify-end">

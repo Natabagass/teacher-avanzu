@@ -2,7 +2,7 @@ import Button from "@components/button";
 import Links from "@components/link";
 import Text from "@components/text";
 import Layout from "@layout/main-layout";
-import { dollarFormatter } from "@utils/dollar-formatter";
+import { dollarFormatter } from "@utils/formatter/dollar-formatter";
 import Image from "next/image";
 import Link from "next/link";
 import { TbBook2, TbBooks, TbCashBanknote, TbDownload, TbSchool, TbStars, TbUsersGroup } from "react-icons/tb";

@@ -12,6 +12,7 @@ import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Controller, FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { HiOutlineSparkles } from "react-icons/hi";
+import { LuLoader2 } from "react-icons/lu";
 import { PiCurrencyDollarSimple } from "react-icons/pi";
 import { TbExclamationCircle, TbLock } from "react-icons/tb";
 
@@ -70,7 +71,7 @@ const CrearCursoStep1 = ({
     useEffect(() => {
         if (identifier) {
             setValue('thumbnail', identifier);
-        } 
+        }
     }, [setValue, identifier]);
 
     return (
@@ -87,7 +88,7 @@ const CrearCursoStep1 = ({
             </div> */}
             <div className="flex flex-col w-full gap-2">
                 <Text size="p3" weight="font-normal" color="text-content-secondary">Miniatura del curso</Text>
-                <label htmlFor="banner">
+                <label className={`border ${error.thumbnail && identifier === '' ? 'border-red-300' : 'border-stroke-primary'} bg-purple-100  rounded-2xl`} htmlFor={loading ? '' : 'banner'}>
                     <FileUploader
                         id="banner"
                         onFileSelect={(file) => setSelectedFile(file)}
@@ -95,27 +96,43 @@ const CrearCursoStep1 = ({
                         setSelectedFile={setSelectedFile}
                     />
                     {
-                        photo ?
-                            <div className="relative border border-stroke-primary rounded-2xl w-full min-h-[200px]">
-                                <Image src={photo} alt="Banner - (Avanzu)" fill className="object-cover rounded-2xl border border-stroke-primary object-center" />
+                        loading ?
+                            <div className="relative flex justify-center items-center w-full min-h-[200px]">
+                                <LuLoader2 className="text-purple-blue-500 text-xl animate-spin" />
                             </div>
                             :
-                            <div className="w-full h-[200px] border bg-purple-100 border-stroke-primary rounded-2xl">
-                                <div className="justify-center items-center flex-col gap-2 flex w-full h-full">
-                                    <div className="w-full flex justify-center">
-                                        <div className="rounded-full p-3 border-white border-2">
-                                            <HiOutlineSparkles className="text-white text-2xl" />
+                            photo && loading == false ?
+                                <div className="relative w-full min-h-[200px]">
+                                    <Image src={photo} alt="Banner - (Avanzu)" fill className="object-cover rounded-2xl object-center" />
+                                </div>
+                                :
+                                <div className="w-full h-[200px]">
+                                    <div className="justify-center items-center flex-col gap-2 flex w-full h-full">
+                                        <div className="w-full flex justify-center">
+                                            <div className="rounded-full p-3 border-white border-2">
+                                                <HiOutlineSparkles className="text-white text-2xl" />
+                                            </div>
+                                        </div>
+                                        <Text size="p3" weight="font-normal" variant="subTitle" color="text-content-secondary">Sube o arrastra tu imagen (jpg,jpeg,png)</Text>
+                                        <div className="flex flex-row w-full justify-center gap-2">
+                                            <TbExclamationCircle className="text-orange-200 text-lg" />
+                                            <Text size="cpt1" weight="font-normal" variant="subTitle-sub" color="text-content-secondary">200x200 píxeles</Text>
                                         </div>
                                     </div>
-                                    <Text size="p3" weight="font-normal" variant="subTitle" color="text-content-secondary">Sube o arrastra tu imagen (jpg,jpeg,png)</Text>
-                                    <div className="flex flex-row w-full justify-center gap-2">
-                                        <TbExclamationCircle className="text-orange-200 text-lg" />
-                                        <Text size="cpt1" weight="font-normal" variant="subTitle-sub" color="text-content-secondary">200x200 píxeles</Text>
-                                    </div>
                                 </div>
-                            </div>
                     }
                 </label>
+                {
+                    error.thumbnail && identifier === '' &&
+                    <Text
+                        weight="font-medium"
+                        className="mt-2"
+                        color={`text-left text-red-300`}
+                        size={`p3`}
+                    >
+                        {error.thumbnail.message?.toString()}
+                    </Text>
+                }
             </div>
             <Input
                 register={register}
@@ -126,12 +143,13 @@ const CrearCursoStep1 = ({
                 placeholder="Escribe el nombre de tu curso"
             />
             <CheckboxInput
+                error={error}
                 watch={watch}
                 label="Categoría"
                 setValue={setValue}
                 register={register}
             />
-            <TagInput 
+            <TagInput
                 error={error}
                 label="Etiqueta"
                 placeholder="Escribe tu etiqueta"
@@ -150,6 +168,8 @@ const CrearCursoStep1 = ({
                         label="Curso de nivel"
                         onChange={onChange}
                         value={value}
+                        error={error}
+                        name={'level'}
                     >
                         {
                             dummy.map((item) => (
@@ -192,7 +212,7 @@ const CrearCursoStep1 = ({
             <div className="flex flex-row w-full justify-between">
                 <Text size="p2" weight="font-medium" variant="title">Precios</Text>
                 <label className="inline-flex items-center cursor-pointer">
-                    <input type="checkbox" { ...register('free') } className="sr-only peer" />
+                    <input type="checkbox" {...register('free')} className="sr-only peer" />
                     <Text size="p3" weight="font-normal" className="mr-2" color="text-content-secondary">Gratis</Text>
                     <div className="relative w-11 h-6 bg-purple-200 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-neon-green-500"></div>
                     <Text size="p3" weight="font-normal" className="ml-2" color="text-content-secondary">Pagado</Text>

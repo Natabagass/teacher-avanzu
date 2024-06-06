@@ -36,7 +36,7 @@ const MiCursoDetallesPage = () => {
                     <div className="flex flex-col w-full gap-4">
                         <div className="flex flex-row w-full items-center justify-between">
                             <Text size="h3" weight="font-semibold" className="w-[50%]" variant="title">Inteligencia de Negocios con Tableau</Text>
-                            <Links href={`/dashboard/mi-curso/avance/1`} padding="px-6 py-4" variant="primary">
+                            <Links href={`/dashboard/mi-curso/avance/estructuras-de-datos-avanzadas`} padding="px-6 py-4" variant="primary">
                                 Vista previa del curso
                             </Links>
                         </div>

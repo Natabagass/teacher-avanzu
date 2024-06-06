@@ -4,7 +4,7 @@ import TableColumn from "@components/table/table-column";
 import Image from "next/image";
 import Text from "@components/text";
 import { TbBooks } from "react-icons/tb";
-import { dollarFormatter } from "@utils/dollar-formatter";
+import { dollarFormatter } from "@utils/formatter/dollar-formatter";
 
 const TableSales = () => {
     return (

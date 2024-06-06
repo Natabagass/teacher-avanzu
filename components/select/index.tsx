@@ -12,11 +12,15 @@ const Select = ({
     disable,
     children,
     className,
+    name,
+    error,
     onChange,
     leftIcon,
     defaultValue
 }: {
     label?: string,
+    name: string,
+    error: any,
     color?: string,
     leftIcon?: string,
     labelStyle?: string,
@@ -63,6 +67,22 @@ const Select = ({
                     </Transition>
                 </div>
             </Listbox>
+            <div className="flex flex-col">
+                {
+                    (error?.root || error?.[name]) && (
+                        <Text
+                            weight="font-medium"
+                            className="mt-2"
+                            color={`text-left text-red-300`}
+                            size={`p3`}
+                        >
+                            {error?.root ?
+                                error?.root[name]
+                                    : error?.[name]?.message}
+                        </Text>
+                    )
+                }
+            </div>
         </div>
     );
 }

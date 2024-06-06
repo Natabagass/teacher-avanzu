@@ -84,7 +84,7 @@ const TagInput = ({
             >
                 {label}
             </Text>
-            <div className={`${tags.length > 0 ? 'p-1' : ''} flex flex-row items-center flex-wrap border border-stroke-primary rounded-3xl bg-purple-100 relative`}>
+            <div className={`${tags.length > 0 ? 'p-1' : ''} ${error.hashtags && tags.length === 0 ? 'border-red-300' : 'border-stroke-primary'} flex flex-row items-center flex-wrap border bg-purple-100 rounded-3xl  relative`}>
                 {
                         tags.map((tag, index) => (
                             <div key={index} className="flex items-center bg-purple-300 p-2 text-white rounded-full px-4 py-2 m-1 text-sm">
@@ -108,6 +108,17 @@ const TagInput = ({
                     onKeyDown={handleKeyDown}
                 />
             </div>
+            {
+                    error.hashtags && tags.length === 0 &&
+                    <Text
+                    weight="font-medium"
+                    className="mt-2"
+                    color={`text-left text-red-300`}
+                    size={`p3`}
+                >
+                    {error.hashtags.message?.toString()}
+                </Text>
+                }
         </div>
     );
 };

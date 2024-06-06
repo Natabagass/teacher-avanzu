@@ -9,6 +9,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'aoyfqtbcektucqlryxvj.supabase.co'
+            },
+            {
+                protocol: 'https',
+                hostname: 'avanzu.s3.us-east-2.amazonaws.com'
             }
         ]
     }

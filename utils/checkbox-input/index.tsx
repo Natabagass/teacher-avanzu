@@ -11,12 +11,14 @@ const CheckboxInput = ({
     labelStyle,
     register,
     setValue,
-    watch
+    watch,
+    error
 }: {
     label?: string,
     labelStyle?: string,
     hide?: boolean,
     register?: any,
+    error?: any,
     setValue?: any,
     watch?: any
 }) => {
@@ -59,7 +61,7 @@ const CheckboxInput = ({
                 {label}
             </Text>
             <div className="flex flex-col w-full relative">
-                <div onClick={() => toggleModal()} className="flex flex-row mt-2 items-center flex-wrap border border-stroke-primary rounded-3xl bg-purple-100 relative cursor-pointer">
+                <div onClick={() => toggleModal()} className={`flex flex-row mt-2 items-center flex-wrap border ${error.categories && selectedCategories.length === 0 ? 'border-red-300' : 'border-stroke-primary'} rounded-3xl bg-purple-100 relative cursor-pointer`}>
                     {
                         valueSelected?.length > 0 ?
                             valueSelected?.map((tag: string, index: number) => {
@@ -98,6 +100,17 @@ const CheckboxInput = ({
                                 </div>
                     }
                 </div>
+                {
+                    error.categories && selectedCategories.length === 0 &&
+                    <Text
+                    weight="font-medium"
+                    className="mt-2"
+                    color={`text-left text-red-300`}
+                    size={`p3`}
+                >
+                    La categoria es requerida
+                </Text>
+                }
                 <input
                     className="hidden"
                     value={selectedCategories}
