@@ -86,7 +86,7 @@ const ResenasList = ({
                         ))
                         :
                         <div className="w-full flex justify-center items-center h-full">
-                            <Text size="h1" weight="font-semibold">No Reviews</Text>
+                            <Text size="h1" weight="font-semibold">Sin reseñas</Text>
                         </div>
                 }
                 {
