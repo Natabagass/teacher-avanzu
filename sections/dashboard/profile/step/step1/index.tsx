@@ -178,6 +178,8 @@ const ProfilChange = (
                         defaultValue="CC"
                         render={({ field: { onChange, value, ref } }) => (
                             <Select
+                                name="type"
+                                error={errors}
                                 label="Seleccione"
                                 onChange={onChange}
                                 value={value}

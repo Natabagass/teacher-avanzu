@@ -7,12 +7,13 @@ import { useForm } from "react-hook-form";
 import TableIntento from "./table-intento";
 
 const IntentoDePruebaPage = () => {
-    const { control } = useForm()
+    const { control, formState: { errors } } = useForm()
     return (
         <Layout variant="dashboard" className="w-full flex flex-col gap-6">
             <Text size="h3" weight="font-semibold">Intento de prueba</Text>
 
             <HeaderChoose
+                errors={errors}
                 control={control}
             />
             <TableIntento />

@@ -36,6 +36,8 @@ const ModalCerrar = ({
                         <Select
                             label="Tipo de problema"
                             onChange={onChange}
+                            name="type"
+                            error={errors}
                             color="bg-purple-200"
                             value={value}
                         >

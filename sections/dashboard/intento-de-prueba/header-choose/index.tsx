@@ -9,9 +9,11 @@ import { Controller } from "react-hook-form";
 import { TbCalendarEvent } from "react-icons/tb";
 
 const HeaderChoose = ({
-    control
+    control,
+    errors
 }: {
-    control: any
+    control: any,
+    errors: any
 }) => {
     const [startDate, setStartDate] = useState(new Date());
     const [show, setShow] = useState(false)
@@ -31,6 +33,8 @@ const HeaderChoose = ({
                 render={({ field: { onChange, value, ref } }) => (
                     <Select
                         label="Cursos"
+                        name="cursos"
+                        error={errors}
                         onChange={onChange}
                         value={value}
                     >
@@ -63,6 +67,8 @@ const HeaderChoose = ({
                 defaultValue={'React Desde Cero'}
                 render={({ field: { onChange, value, ref } }) => (
                     <Select
+                        name="order"
+                        error={errors}
                         label="Ordenar por"
                         onChange={onChange}
                         value={value}
