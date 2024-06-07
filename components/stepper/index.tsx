@@ -47,7 +47,7 @@ const Stepper = ({
                     <div className="flex flex-row justify-end items-center gap-4">
                         {
                             step === 1 ?
-                                <Links href="/dashboard/curso" padding="px-6 py-4" size="btn1" variant="secondary-subtle">
+                                <Links href="/dashboard/mi-curso" padding="px-6 py-4" size="btn1" variant="secondary-subtle">
                                     Cancelar
                                 </Links>
                                 :
