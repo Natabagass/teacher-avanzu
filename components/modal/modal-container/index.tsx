@@ -62,6 +62,7 @@ const ModalContainer = ({
                                 onClick={() => {
                                     if (typeof modal?.function === 'function') {
                                         modal?.function()
+                                        setOpen(false)
                                     } else {
                                         setOpen(false)
                                     }
