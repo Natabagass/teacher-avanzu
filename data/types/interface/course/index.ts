@@ -27,7 +27,7 @@ export interface CourseTypes {
         discountedPrice: string,
         reviewsCount: number,
         tagline: string,
-        teacherImage: string,
+        teacherPicture: string,
         approved: boolean,
         level: string,
         teacher: string
@@ -60,7 +60,7 @@ export const CourseValue: CourseTypes = {
             rating: 0,
             thumbnail: '',
             approved: false,
-            teacherImage: '',
+            teacherPicture: '',
             tagline: '',
             minutes: 0,
             hours: 0,
@@ -87,7 +87,7 @@ export interface CourseItem {
         discountedPrice: string,
         reviewsCount: number,
         tagline: string,
-        teacherImage: string,
+        teacherPicture: string,
         approved: boolean,
         level: string,
         teacher: string

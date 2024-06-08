@@ -41,7 +41,7 @@ const SingleCourse = ({
                         </span>
                         <div className="flex w-full flex-row items-center gap-2">
                             <div className="relative h-4 w-4">
-                            <Image src={item.teacherImage || `${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
+                            <Image src={item.teacherPicture || `${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
                             </div>
                             <Text size="cpt1" weight="font-medium" color="text-white">{item.teacher}</Text>
                         </div>

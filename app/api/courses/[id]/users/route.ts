@@ -8,14 +8,15 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     const session = await getServerSession(authOptions)
     const TOKEN = session?.user.token
     const searchParams = request.nextUrl.searchParams
-    const metadata = searchParams.get("with-metadata");
+    const page = searchParams.get("page");
+    const perPage = searchParams.get("per-page");
 
     try {
         if (!TOKEN) {
             return new Response('Unauthorized', { status: 401 });
         }
 
-        const res = await axios.get(`${API_KEY}${COURSES}/${params.id}?with-metadata=${metadata}`, {
+        const res = await axios.get(`${API_KEY}${COURSES}/${params.id}/users?page=${page}&per-page=${perPage}`, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",

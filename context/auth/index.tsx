@@ -6,10 +6,10 @@ import { useContext, useEffect, useState, createContext } from "react";
 export const UserContext = createContext({
     userInfo: {
         email: "",
-        code: 0,
         profilePicture: "",
         backgroundPicture: "",
         name: "",
+        code: 0,
         firstName: "",
         lastName: "",
         displayName: "",
@@ -26,8 +26,8 @@ export const UserContext = createContext({
 
 export const ProfileUserProvider = ({ children }: { children: React.ReactNode }) => {
     const [userInfo, setUserInfo] = useState({
-        code: 0,
         email: "",
+        code: 0,
         profilePicture: "",
         backgroundPicture: "",
         name: "",
@@ -56,17 +56,17 @@ export const ProfileUserProvider = ({ children }: { children: React.ReactNode })
                 }
             },)
             const data = await res.json()
-            if (res.status === 404) {
+            if (res.status !== 200) {
                 await signOut({
                     redirect: true,
-                    callbackUrl: '/'
+                    callbackUrl: '/l'
                 })
             }
             setUserInfo(data);
         } catch (error) {
             await signOut({
                 redirect: true,
-                callbackUrl: '/'
+                callbackUrl: '/l'
             })
         }
     };
