@@ -11,10 +11,12 @@ const Stepper = ({
     steps,
     className,
     variant,
+    watch,
     next,
     goto
 }: {
     step: number,
+    watch?: any,
     steps: string[],
     goto: (id: number) => void,
     className?: string,
@@ -47,40 +49,41 @@ const Stepper = ({
                     <div className="flex flex-row justify-end items-center gap-4">
                         {
                             step === 1 ?
-                                <Links href="/dashboard/mi-curso" padding="px-6 py-4" size="btn1" variant="secondary-subtle">
-                                    Cancelar
-                                </Links>
+                                <>
+                                    <Links href="/dashboard/mi-curso" padding="px-6 py-4" size="btn1" variant="secondary-subtle">
+                                        Cancelar
+                                    </Links>
+                                    <Button
+                                        onClick={() => next()}
+                                        padding="px-6 py-4"
+                                        type='button'
+                                        size="btn1"
+                                        variant="primary"
+                                    >
+                                        Continuar
+                                    </Button>
+                                </>
+
                                 :
-                                <Button
-                                    onClick={() => goto(0)}
-                                    padding="px-6 py-4"
-                                    type="button"
-                                    size="btn1"
-                                    variant="secondary-subtle"
-                                >
-                                    Atrás
-                                </Button>
-                        }
-                        {
-                            step === 1 ?
-                                <Button
-                                    onClick={() => next()}
-                                    padding="px-6 py-4"
-                                    type='button'
-                                    size="btn1"
-                                    variant="primary"
-                                >
-                                    Continuar
-                                </Button>
-                                :
-                                <Button
-                                    padding="px-6 py-4"
-                                    type='submit'
-                                    size="btn1"
-                                    variant="primary"
-                                >
-                                    Entregar
-                                </Button>
+                                <>
+                                    <Button
+                                        onClick={() => goto(0)}
+                                        padding="px-6 py-4"
+                                        type="button"
+                                        size="btn1"
+                                        variant="secondary-subtle"
+                                    >
+                                        Atrás
+                                    </Button>
+                                    <Button
+                                        padding="px-6 py-4"
+                                        type='submit'
+                                        size="btn1"
+                                        variant="primary"
+                                    >
+                                        Entregar
+                                    </Button>
+                                </>
                         }
                     </div>
                 </div>

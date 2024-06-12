@@ -20,7 +20,7 @@ const Select = ({
 }: {
     label?: string,
     name: string,
-    error: any,
+    error?: any,
     color?: string,
     leftIcon?: string,
     labelStyle?: string,

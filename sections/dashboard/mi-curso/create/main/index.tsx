@@ -25,14 +25,15 @@ const CrearCursoPage = () => {
     })
 
     const handleNext = async () => {
-        const fields = fieldsForm.at(currentStepIndex)?.fields
-        const output = await trigger(fields as FieldName[], { shouldFocus: true })
-        window.scroll(0, 0)
+        next()
+        // const fields = fieldsForm.at(currentStepIndex)?.fields
+        // const output = await trigger(fields as FieldName[], { shouldFocus: true })
+        // window.scroll(0, 0)
 
-        if (output) {
-            next()
-            clearErrors()
-        }
+        // if (output) {
+        //     next()
+        //     clearErrors()
+        // }
     }
 
     const handleGoto = (index: number) => {
@@ -40,31 +41,53 @@ const CrearCursoPage = () => {
     }
     const { setModal } = useModal()
     const router = useRouter()
-
     const onSubmit: SubmitHandler<CreateCourseSchema> = async (data) => {
+        const modulesCopy = data.modules.map(module => ({
+            ...module,
+            lessons: module.lessons.map(({ id, ...lessonWithoutId }) => lessonWithoutId),
+            quizzes: module.quizzes.map(({ id, ...quizWithoutId }) => ({
+                ...quizWithoutId,
+                questions: quizWithoutId.questions.map(({ id, ...questionWithoutId }) => questionWithoutId)
+            }))
+        }));
+    
+        const payload = {
+            ...data,
+            modules: modulesCopy
+        };
+    
         try {
             const res = await fetch(`/api/courses`, {
                 method: 'POST',
-                body: JSON.stringify(data)
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
             });
-            const datas = await res.json()
-            if (datas.code === 200 || datas.code === 201) {
+            const datas = await res.json();
+                if (datas.code === 200 || datas.code === 201) {
                 setModal({
                     placement: 'center',
                     type: 'success',
                     button1: 'Mostrar Menos',
                     subTitle: 'Curso de creación de éxito.',
                     function: () => {
-                        router.push('/dashboard/mi-curso')
+                        router.push('/dashboard/mi-curso');
                     }
-                })
+                });
+            } else {
+                setError('root', { type: 'manual', message: datas.errors });
+                setModal({
+                    type: 'fail',
+                    placement: 'center',
+                    title: 'Fallido Crear',
+                    desc: 'revisa nuevamente tu entrada',
+                });
             }
-            setError('root', datas.errors)
         } catch (error: any) {
-            setError('root', error.response.data.errors)
+            setError('root', { type: 'manual', message: error.message });
         }
     };
-
 
     const { next, prev, step: stepElement, currentStepIndex, goto } = useMultiStep([
         <CrearCursoStep1 key={1} setValue={setValue} resetField={resetField} control={control} watch={watch} register={register} error={errors} setSelectedFile={setSelectedFile} selectedFile={selectedFile} photo={photo} setPhoto={setPhoto} next={handleNext} goto={handleGoto} />,
@@ -72,6 +95,7 @@ const CrearCursoPage = () => {
             key={2}
             setValue={setValue}
             setVideo={setVideo}
+            control={control}
             setFiles={setFiles}
             watch={watch}
             register={register}
@@ -81,13 +105,13 @@ const CrearCursoPage = () => {
         />,
     ])
 
-    console.log(errors)
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-full gap-8">
             <Stepper
                 next={handleNext}
                 variant="navbar"
+                watch={watch}
                 goto={goto}
                 step={currentStepIndex + 1}
                 steps={["Curso detallado", "Configuración del módulo"]}

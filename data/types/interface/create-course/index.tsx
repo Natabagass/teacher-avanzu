@@ -1,44 +1,47 @@
 export interface Lesson {
     title: string;
+    id: number;
     order: number;
     description: string;
     video: string;
     attachment: string;
 }
 
+export interface Answer {
+    id: number,
+    answer: string,
+    isAnswer: boolean
+}
+
 export interface Question {
     type: string,
     question: string,
+    id: number,
+    title: string,
     description: string,
     options: string,
-    answer: string
+    answers: Answer[]
 }
-
 export interface Quizzes {
     title: string,
+    id: number,
     attachment: string,
     order: number,
-    questions: {
-        type: string,
-        question: string,
-        answers: {
-            id: number,
-            answer: string,
-            isAnswer: boolean
-        }[]
-    }[]
+    questions: Question[]
 }
 
 export interface Module {
     title: string;
     order: number;
     lessons: Lesson[];
+    quizzes: Quizzes[];
 }
 
 export const value = [
     {
         title: 'Quiz 1',
         attachment: '',
+        id: 0,
         order: 1,
         questions: [
             {
@@ -70,6 +73,7 @@ export const value = [
     {
         title: 'Quiz 2',
         attachment: '',
+        id: 0,
         order: 2,
         questions: [
             {

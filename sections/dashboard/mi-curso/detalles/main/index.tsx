@@ -156,18 +156,18 @@ const MiCursoDetallesPage = () => {
                                                     {dayjs(item.joinedAt, 'DD/MM/YYYY').format('DD MMM YY') || '-'}
                                                 </Text>
                                             </TableColumn>
-                                            {/* <TableColumn>
+                                            <TableColumn>
                                         <Text variant="subTitle" weight="font-normal" size="p2" color="text-white">
-                                            {item.progress}
+                                            {item.coursesProgress || 0}
                                         </Text>
                                     </TableColumn>
                                     <TableColumn className="w-[10%]">
-                                        <div className={`${item.progress < 100 ? 'border-orange-200' : 'border-green-200'} border rounded-3xl p-2`}>
-                                            <Text variant="subTitle" weight="font-normal" size="cpt1" color={item.progress < 100 ? 'text-orange-200' : 'text-green-200'}>
-                                                {item.progress < 100 ? 'En curso' : 'Completado'}
+                                        <div className={`${item.coursesProgress || 0 < 100 ? 'border-orange-200' : 'border-green-200'} border rounded-3xl p-2`}>
+                                            <Text variant="subTitle" weight="font-normal" size="cpt1" color={item.coursesProgress || 0 < 100 ? 'text-orange-200' : 'text-green-200'}>
+                                                {item.coursesProgress || 0 < 100 ? 'En curso' : 'Completado'}
                                             </Text>
                                         </div>
-                                    </TableColumn> */}
+                                    </TableColumn>
                                         </tr>
                                     )))
                                     }

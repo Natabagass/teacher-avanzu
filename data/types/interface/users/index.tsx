@@ -16,6 +16,7 @@ export interface UsersTypes {
         id: number,
         email: string,
         name: string,
+        coursesProgress: number,
         suspended: boolean,
         completed: boolean,
         joinedAt: string
@@ -40,6 +41,7 @@ export const UsersValue: UsersTypes = {
         {
             id: 0,
             email: '',
+            coursesProgress: 0,
             name: '',
             suspended: false,
             completed: false,
@@ -54,6 +56,7 @@ export interface UsersItem {
     name: string,
     suspended: boolean,
     completed: boolean,
+    coursesProgress: number,
     joinedAt: string
 }
 

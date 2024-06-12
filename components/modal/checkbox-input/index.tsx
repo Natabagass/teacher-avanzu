@@ -16,7 +16,8 @@ const ModalCheckboxInput = ({
         setCheckedItems((prevCheckedItems: any) => ({
             ...prevCheckedItems,
             [categoryName]: !prevCheckedItems[categoryName]
-        }));    };
+        }));    
+    };
 
     return (
         <>
