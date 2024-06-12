@@ -215,7 +215,7 @@ const QuizList = ({
                                                                     className='border-stroke-primary bg-purple-100 outline-none px-6 py-3 placeholder:text-sm text-white border w-full rounded-3xl'
                                                                     placeholder="Escribe la descripción de tu curso."
                                                                     maxLength={300}
-                                                                    defaultValue={modules[page - 1].lessons[sub.id - 1]?.description}
+                                                                    defaultValue={modules[page - 1].quizzes[sub.id - 1].questions[item.id - 1].description}
                                                                     onChange={(e) => updateQuestion(page - 1, sub.id - 1, item.id - 1, 'description', e.target.value)}
                                                                 />
                                                                 <div className="w-full flex justify-end">

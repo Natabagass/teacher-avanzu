@@ -25,15 +25,14 @@ const CrearCursoPage = () => {
     })
 
     const handleNext = async () => {
-        next()
-        // const fields = fieldsForm.at(currentStepIndex)?.fields
-        // const output = await trigger(fields as FieldName[], { shouldFocus: true })
-        // window.scroll(0, 0)
+        const fields = fieldsForm.at(currentStepIndex)?.fields
+        const output = await trigger(fields as FieldName[], { shouldFocus: true })
+        window.scroll(0, 0)
 
-        // if (output) {
-        //     next()
-        //     clearErrors()
-        // }
+        if (output) {
+            next()
+            clearErrors()
+        }
     }
 
     const handleGoto = (index: number) => {
@@ -47,10 +46,13 @@ const CrearCursoPage = () => {
             lessons: module.lessons.map(({ id, ...lessonWithoutId }) => lessonWithoutId),
             quizzes: module.quizzes.map(({ id, ...quizWithoutId }) => ({
                 ...quizWithoutId,
-                questions: quizWithoutId.questions.map(({ id, ...questionWithoutId }) => questionWithoutId)
+                questions: quizWithoutId.questions.map(({ id, type, ...questionWithoutId }) => ({
+                    ...questionWithoutId,
+                    type,
+                    answers: type === 'Essay' ? [] : questionWithoutId.answers
+                }))
             }))
         }));
-    
         const payload = {
             ...data,
             modules: modulesCopy
