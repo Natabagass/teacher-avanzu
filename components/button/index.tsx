@@ -10,7 +10,7 @@ const Button = ({
     padding
 }: {
     variant?: string,
-    onClick?: () => void,
+    onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void,
     disable?: boolean,
     color?: string,
     type: 'submit' | 'button',

@@ -48,23 +48,7 @@ const Stepper = ({
                     </div>
                     <div className="flex flex-row justify-end items-center gap-4">
                         {
-                            step === 1 ?
-                                <>
-                                    <Links href="/dashboard/mi-curso" padding="px-6 py-4" size="btn1" variant="secondary-subtle">
-                                        Cancelar
-                                    </Links>
-                                    <Button
-                                        onClick={() => next()}
-                                        padding="px-6 py-4"
-                                        type='button'
-                                        size="btn1"
-                                        variant="primary"
-                                    >
-                                        Continuar
-                                    </Button>
-                                </>
-
-                                :
+                            step === 2 ?
                                 <>
                                     <Button
                                         onClick={() => goto(0)}
@@ -78,10 +62,29 @@ const Stepper = ({
                                     <Button
                                         padding="px-6 py-4"
                                         type='submit'
+                                        disable={step !== 2}
                                         size="btn1"
                                         variant="primary"
                                     >
                                         Entregar
+                                    </Button>
+                                </>
+                                :
+                                <>
+                                    <Links href="/dashboard/mi-curso" padding="px-6 py-4" size="btn1" variant="secondary-subtle">
+                                        Cancelar
+                                    </Links>
+                                    <Button
+                                        onClick={(e) => {
+                                            e?.preventDefault()
+                                            next()
+                                        }}
+                                        padding="px-6 py-4"
+                                        type="button"
+                                        size="btn1"
+                                        variant="primary"
+                                    >
+                                        Continuar
                                     </Button>
                                 </>
                         }

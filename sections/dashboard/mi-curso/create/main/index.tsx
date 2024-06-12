@@ -57,7 +57,7 @@ const CrearCursoPage = () => {
             ...data,
             modules: modulesCopy
         };
-    
+
         try {
             const res = await fetch(`/api/courses`, {
                 method: 'POST',
@@ -67,7 +67,7 @@ const CrearCursoPage = () => {
                 body: JSON.stringify(payload)
             });
             const datas = await res.json();
-                if (datas.code === 200 || datas.code === 201) {
+            if (datas.code === 200 || datas.code === 201) {
                 setModal({
                     placement: 'center',
                     type: 'success',
