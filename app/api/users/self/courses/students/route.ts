@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
             return new Response('Unauthorized', { status: 401 });
         }
 
-        const res = await axios.get(`${API_KEY}users/self/courses?page=${page}&per-page=${pageSize}${sortBy ? `&sort-by=${sortBy}` : ''}${query ? `&query=${query}` : ''}${asCreator ? `&as-creator=${asCreator}` : ''}`, {
+        const res = await axios.get(`${API_KEY}users/self/courses/students?page=${page}&per-page=${pageSize}`, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",

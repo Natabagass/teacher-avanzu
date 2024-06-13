@@ -19,6 +19,9 @@ export interface UsersTypes {
         coursesProgress: number,
         suspended: boolean,
         completed: boolean,
+        completes: number,
+        profilePicture: string,
+        joinedCourses: number,
         joinedAt: string
     }[]
 }
@@ -43,7 +46,10 @@ export const UsersValue: UsersTypes = {
             email: '',
             coursesProgress: 0,
             name: '',
+            joinedCourses: 0,
+            completes: 0,
             suspended: false,
+            profilePicture: '',
             completed: false,
             joinedAt: ''
         }
@@ -56,6 +62,9 @@ export interface UsersItem {
     name: string,
     suspended: boolean,
     completed: boolean,
+    profilePicture: string,
+    completes: number,
+    joinedCourses: number,
     coursesProgress: number,
     joinedAt: string
 }

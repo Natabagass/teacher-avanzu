@@ -1,13 +1,78 @@
+'use client'
+
 import Button from "@components/button";
 import Links from "@components/link";
+import LoadingPage from "@components/loading";
 import Text from "@components/text";
 import Layout from "@layout/main-layout";
 import { dollarFormatter } from "@utils/formatter/dollar-formatter";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { TbBook2, TbBooks, TbCashBanknote, TbDownload, TbSchool, TbStars, TbUsersGroup } from "react-icons/tb";
 
 const HeaderHogar = () => {
+    const [total, setTotal] = useState({
+        cursos: 0,
+        student: 0
+    })
+
+    const datas = async () => {
+        const resCursos = await fetch('/api/users/self/courses?page=1&per-page=1&as-creator=true', {
+            method: 'GET'
+        })
+        const resStudents = await fetch('/api/users/self/courses/students?page=1&per-page=1', {
+            method: 'GET'
+        })
+
+        if (resCursos.status === 200 || resStudents.status === 200) {
+            const jsonCursos = await resCursos.json()
+            const jsonStudents = await resStudents.json()
+            setTotal({ ...total, cursos: jsonCursos.metadata.totalCount, student: jsonStudents.metadata.totalCount })
+        }
+    }
+
+    useEffect(() => {
+        datas()
+    }, [])
+
+
+    const dataOverview = [
+        {
+            id: 1,
+            name: 'Mis ingresos totales',
+            total: '1000000',
+            path: '',
+            rating: '',
+            icon: TbUsersGroup
+        },
+        {
+            id: 2,
+            name: 'Mi curso',
+            path: 'mi-curso',
+            total: `${total.cursos}`,
+            rating: '',
+            icon: TbBooks
+        },
+        {
+            id: 3,
+            name: 'Mi estudiante',
+            path: 'mi-estudiante',
+            total: `${total.student}`,
+            rating: '',
+            icon: TbUsersGroup
+        },
+        {
+            id: 4,
+            name: 'Valoraciones medias',
+            path: '',
+            rating: '4.8',
+            total: '127',
+            icon: TbStars
+        }
+    ]
+
     return (
         <Layout variant="dashboard" className="flex flex-col w-full gap-6">
             <div className="relative flex flex-row w-full  justify-between items-center bg-neon-green-500 rounded-xl">
@@ -35,7 +100,11 @@ const HeaderHogar = () => {
                             </div>
                             <Text size="p2" color="text-content-secondary" weight="font-medium">{item.name}</Text>
                             <Text size="h3" weight="font-bold">
-                                {item.id === 1 ? dollarFormatter(item.total) : item.total}
+                                {item.total === '0' ? (
+                                    <AiOutlineLoading3Quarters className="text-purple-blue-500 animate-spin text-2xl" />
+                                ) : (
+                                    item.id === 1 ? dollarFormatter(item.total) : item.total
+                                )}
                             </Text>
                         </Link>
                     ))
@@ -46,38 +115,3 @@ const HeaderHogar = () => {
 }
 
 export default HeaderHogar;
-
-export const dataOverview = [
-    {
-        id: 1,
-        name: 'Mis ingresos totales',
-        total: '1000000',
-        path: '',
-        rating: '',
-        icon: TbUsersGroup
-    },
-    {
-        id: 2,
-        name: 'Mi curso',
-        path: 'mi-curso',
-        total: '24',
-        rating: '',
-        icon: TbBooks
-    },
-    {
-        id: 3,
-        name: 'Mi estudiante',
-        path: 'mi-estudiante',
-        total: '54',
-        rating: '',
-        icon: TbUsersGroup
-    },
-    {
-        id: 4,
-        name: 'Valoraciones medias',
-        path: '',
-        rating: '4.8',
-        total: '127',
-        icon: TbStars
-    }
-]
