@@ -6,7 +6,6 @@ import Links from "@components/link";
 import LoadingPage from "@components/loading";
 import Text from "@components/text";
 import Layout from "@layout/main-layout";
-import { dummyContent } from "data/models/dummy/dummyContent";
 import { CourseTypes, CourseValue } from "data/types/interface/course";
 import { useEffect, useState } from "react";
 import { TbChevronLeft, TbChevronRight, TbPlus } from "react-icons/tb";

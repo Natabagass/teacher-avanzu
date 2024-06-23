@@ -97,16 +97,16 @@ const CrearCursoStep1 = ({
                     />
                     {
                         loading ?
-                            <div className="relative flex justify-center items-center w-full min-h-[200px]">
+                            <div className="relative flex justify-center items-center w-full min-h-[300px]">
                                 <LuLoader2 className="text-purple-blue-500 text-xl animate-spin" />
                             </div>
                             :
                             photo && loading == false ?
-                                <div className="relative w-full min-h-[200px]">
+                                <div className="relative w-full min-h-[300px]">
                                     <Image src={photo} alt="Banner - (Avanzu)" fill className="object-cover rounded-2xl object-center" />
                                 </div>
                                 :
-                                <div className="w-full h-[200px]">
+                                <div className="w-full h-[300px]">
                                     <div className="justify-center items-center flex-col gap-2 flex w-full h-full">
                                         <div className="w-full flex justify-center">
                                             <div className="rounded-full p-3 border-white border-2">
@@ -116,7 +116,7 @@ const CrearCursoStep1 = ({
                                         <Text size="p3" weight="font-normal" variant="subTitle" color="text-content-secondary">Sube o arrastra tu imagen (jpg,jpeg,png)</Text>
                                         <div className="flex flex-row w-full justify-center gap-2">
                                             <TbExclamationCircle className="text-orange-200 text-lg" />
-                                            <Text size="cpt1" weight="font-normal" variant="subTitle-sub" color="text-content-secondary">200x200 píxeles</Text>
+                                            <Text size="cpt1" weight="font-normal" variant="subTitle-sub" color="text-content-secondary">1500x780 píxeles</Text>
                                         </div>
                                     </div>
                                 </div>
