@@ -46,7 +46,7 @@ const CrearCursoStep2 = ({
     const [moduleTitle, setModuleTitle] = useState(0)
 
     const defaultLesson = (id: number, order: number): Lesson => ({
-        title: `Lesson ${id}`,
+        title: `Lección ${id}`,
         order: order,
         description: '',
         id: id,
@@ -55,7 +55,7 @@ const CrearCursoStep2 = ({
     });
 
     const defaultQuiz = (id: number, order: number): Quizzes => ({
-        title: `Quiz ${id}`,
+        title: `Prueba ${id}`,
         attachment: '',
         id: id,
         order: order,

@@ -12,31 +12,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { TbBook2, TbBooks, TbCashBanknote, TbDownload, TbSchool, TbStars, TbUsersGroup } from "react-icons/tb";
 
-const HeaderHogar = () => {
-    const [total, setTotal] = useState({
-        cursos: 0,
-        student: 0
-    })
-
-    const datas = async () => {
-        const resCursos = await fetch('/api/users/self/courses?page=1&per-page=1&as-creator=true', {
-            method: 'GET'
-        })
-        const resStudents = await fetch('/api/users/self/courses/students?page=1&per-page=1', {
-            method: 'GET'
-        })
-
-        if (resCursos.status === 200 || resStudents.status === 200) {
-            const jsonCursos = await resCursos.json()
-            const jsonStudents = await resStudents.json()
-            setTotal({ ...total, cursos: jsonCursos.metadata.totalCount, student: jsonStudents.metadata.totalCount })
-        }
-    }
-
-    useEffect(() => {
-        datas()
-    }, [])
-
+const HeaderHogar = ({ total }: { total: { cursos: number, loadingCursos: boolean, loadingStudent: boolean, student: number } }) => { 
 
     const dataOverview = [
         {
@@ -44,6 +20,7 @@ const HeaderHogar = () => {
             name: 'Mis ingresos totales',
             total: '1000000',
             path: '',
+            loading: false,
             rating: '',
             icon: TbUsersGroup
         },
@@ -51,6 +28,7 @@ const HeaderHogar = () => {
             id: 2,
             name: 'Mi curso',
             path: 'mi-curso',
+            loading: total.loadingCursos,
             total: `${total.cursos}`,
             rating: '',
             icon: TbBooks
@@ -59,6 +37,7 @@ const HeaderHogar = () => {
             id: 3,
             name: 'Mi estudiante',
             path: 'mi-estudiante',
+            loading: total.loadingStudent,
             total: `${total.student}`,
             rating: '',
             icon: TbUsersGroup
@@ -67,6 +46,7 @@ const HeaderHogar = () => {
             id: 4,
             name: 'Valoraciones medias',
             path: '',
+            loading: false,
             rating: '4.8',
             total: '127',
             icon: TbStars
@@ -100,7 +80,7 @@ const HeaderHogar = () => {
                             </div>
                             <Text size="p2" color="text-content-secondary" weight="font-medium">{item.name}</Text>
                             <Text size="h3" weight="font-bold">
-                                {item.total === '0' ? (
+                                {item.loading ? (
                                     <AiOutlineLoading3Quarters className="text-purple-blue-500 animate-spin text-2xl" />
                                 ) : (
                                     item.id === 1 ? dollarFormatter(item.total) : item.total

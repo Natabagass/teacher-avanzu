@@ -47,30 +47,38 @@ export const ProfileUserProvider = ({ children }: { children: React.ReactNode })
     const { data: user } = useSession()
     console.log(user)
 
+    const fetchWithRetry = async (url: string, retries = 3) => {
+        for (let i = 0; i < retries; i++) {
+            try {
+                const res = await fetch(url);
+                return await res.json();
+            } catch (error) {
+                if (i < retries - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                } else {
+                    await signOut({
+                        redirect: true,
+                        callbackUrl: '/'
+                    });
+                }
+            }
+        }
+    };
+    
     const dataUser = async () => {
         try {
-            const res = await fetch('/api/users/me', {
-                method: 'GET',
-                next: {
-                    revalidate: 300
-                }
-            },)
-            const data = await res.json()
-            if (res.status !== 200) {
-                await signOut({
-                    redirect: true,
-                    callbackUrl: '/l'
-                })
-            }
+            const data = await fetchWithRetry('/api/users/me');
+
+            if (data)
             setUserInfo(data);
         } catch (error) {
             await signOut({
                 redirect: true,
-                callbackUrl: '/l'
-            })
+                callbackUrl: '/'
+            });
         }
     };
-
+    
     useEffect(() => {
         if (user?.user.token) {
             dataUser();

@@ -10,9 +10,6 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams
     const page = searchParams.get("page");
     const pageSize = searchParams.get("per-page")
-    const sortBy = searchParams.get("sort-by")
-    const query = searchParams.get("query")
-    const asCreator = searchParams.get("as-creator")
 
     try {
         if (!TOKEN) {

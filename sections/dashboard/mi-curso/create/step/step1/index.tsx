@@ -203,10 +203,10 @@ const CrearCursoStep1 = ({
                     error={error}
                     leftIcon={false}
                     name="description"
-                    max={300}
+                    max={1000}
                 />
                 <div className="w-full flex justify-end">
-                    <Text size="p2" weight="font-normal" color="text-content-secondary">{watch('desc')?.length ? watch('desc')?.length : 0}/300</Text>
+                    <Text size="p2" weight="font-normal" color="text-content-secondary">{watch('desc')?.length ? watch('desc')?.length : 0}/1000</Text>
                 </div>
             </div>
             <div className="flex flex-row w-full justify-between">
