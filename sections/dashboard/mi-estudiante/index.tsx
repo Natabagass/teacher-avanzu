@@ -16,6 +16,7 @@ import { UsersTypes, UsersValue } from "data/types/interface/users";
 import { URL_DUMMY_IMAGE } from "@utils/endpoint";
 import LoadingPage from "@components/loading";
 import dayjs from "dayjs";
+import ImageBlur from "@components/dynamic-blur";
 
 const MiEstudiantePage = () => {
     const [students, setStudents] = useState<UsersTypes>(UsersValue)
@@ -99,7 +100,7 @@ const MiEstudiantePage = () => {
                                                     <TableColumn>
                                                         <div className="flex flex-row items-center justify-start w-full gap-2">
                                                             <div className="relative w-14 h-14">
-                                                                <Image src={item.profilePicture || `${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Promocion Image - (Avanzu)" fill className="object-center object-cover rounded-full" />
+                                                                <ImageBlur src={item.profilePicture || `${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Promocion Image - (Avanzu)" fill className="object-center object-cover rounded-full" />
                                                             </div>
                                                             <div className="flex flex-col items-start gap-2">
                                                                 <Text variant="subTitle" weight="font-semibold" size="p2" color="text-white">

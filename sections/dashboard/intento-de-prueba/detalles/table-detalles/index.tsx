@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { IoIosMore, IoMdMore } from "react-icons/io";
 import ModalMoreDetalles from "../modal";
+import ImageBlur from "@components/dynamic-blur";
 
 const TableDetalles = ({
     item
@@ -48,7 +49,7 @@ const TableDetalles = ({
                         <TableColumn variant="border">
                             <div className="flex flex-row items-center text-left justify-center w-full gap-2">
                                 <div className="relative w-14 h-14">
-                                    <Image src={item.profile.img} alt="Promocion Image - (Avanzu)" fill className="object-center object-cover rounded-full" />
+                                    <ImageBlur src={item.profile.img} alt="Promocion Image - (Avanzu)" fill className="object-center object-cover rounded-full" />
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <Text variant="subTitle" weight="font-normal" size="p2" color="text-white">

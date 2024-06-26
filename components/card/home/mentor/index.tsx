@@ -1,3 +1,4 @@
+import ImageBlur from "@components/dynamic-blur";
 import Text from "@components/text";
 import Image from "next/image";
 import { IoIosStarOutline } from "react-icons/io";
@@ -18,7 +19,7 @@ const CardMentor = ({
         <>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-base-dark"></div>
             <div className="relative w-full h-[450px] -z-30">
-                <Image src={item.img} blurDataURL={item.img} placeholder="blur" alt="Image Testi - (Avanzu)" fill className="object-cover border border-content-primary rounded-3xl object-center" />
+                <ImageBlur src={item.img} alt="Image Testi - (Avanzu)" fill className="object-cover border border-content-primary rounded-3xl object-center" />
             </div>
             <div className="absolute inset-0 z-50">
                 <div className="flex flex-col w-full p-3 gap-1 h-full justify-end items-center">

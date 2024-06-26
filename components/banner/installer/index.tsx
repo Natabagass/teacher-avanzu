@@ -1,5 +1,6 @@
 'use client'
 
+import ImageBlur from "@components/dynamic-blur";
 import Text from "@components/text";
 import Layout from "@layout/main-layout";
 import Image from "next/image";
@@ -25,10 +26,10 @@ const BannerInstaller = ({ close, setClose }: { close: boolean, setClose: React.
                     </div>
                     <div className="flex flex-row w-full items-center justify-end gap-4">
                         <Link href={'/'} target="_blank" className="relative h-[50px] w-[15%]">
-                            <Image src={'/assets/icon/google-play-button.png'} alt="Google Play - (Avanzu)" fill className="object-contain object-center" />
+                            <ImageBlur src={'/assets/icon/google-play-button.png'} alt="Google Play - (Avanzu)" fill className="object-contain object-center" />
                         </Link>
                         <Link href={'/'} target="_blank" className="relative h-[50px] w-[15%]">
-                            <Image src={'/assets/icon/app-store.png'} alt="App Store - (Avanzu)" fill className="object-contain object-center" />
+                            <ImageBlur src={'/assets/icon/app-store.png'} alt="App Store - (Avanzu)" fill className="object-contain object-center" />
                         </Link>
                         {/* <Link href={'/'} target="_blank" className="relative h-[50px] w-[15%]">
                             <Image src={'/assets/icon/app-gallery-badge.svg'} alt="App Gallery - (Avanzu)" fill className="object-contain object-center" />

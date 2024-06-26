@@ -1,4 +1,5 @@
 import Button from "@components/button";
+import ImageBlur from "@components/dynamic-blur";
 import Modal from "@components/modal/modal-main";
 import Text from "@components/text";
 import Image from "next/image";
@@ -38,7 +39,7 @@ const ModalEstudianteSingle = ({
                 {
                     openCertif ?
                         <div className="w-full h-[450px] relative">
-                            <Image src={openCertif} alt="Certificate - (Avanzu)" className="object-cover object-center" fill />
+                            <ImageBlur src={openCertif} alt="Certificate - (Avanzu)" className="object-cover object-center" fill />
                         </div>
                         :
                         <div className="flex flex-col w-full gap-6">
@@ -46,7 +47,7 @@ const ModalEstudianteSingle = ({
                                 <div className="flex flex-row w-full items-center justify-between">
                                     <div className="flex flex-row items-center w-full gap-4">
                                         <div className="rounded-full p-3 relative w-16 h-16">
-                                            <Image src={`/assets/cursos/person-2.png`} alt="Profile - (Avanzu)" fill className="object-cover rounded-full object-center" />
+                                            <ImageBlur src={`/assets/cursos/person-2.png`} alt="Profile - (Avanzu)" fill className="object-cover rounded-full object-center" />
                                         </div>
                                         <div className="flex flex-col h-full justify-between">
                                             <Text size='p1' weight="font-semibold" variant="title">Acumalaka Podot</Text>
@@ -90,7 +91,7 @@ const ModalEstudianteSingle = ({
                                             <div key={item.id} className="border rounded-2xl items-center border-stroke-primary py-1 flex flex-row w-full justify-between">
                                                 <div className="flex w-full gap-3 pl-1">
                                                     <div className="relative w-[30%] min-h-[100px]">
-                                                        <Image src={item.course.img} alt="Course - (Avanzu)" className="object-cover object-center rounded-xl" fill />
+                                                        <ImageBlur src={item.course.img} alt="Course - (Avanzu)" className="object-cover object-center rounded-xl" fill />
                                                     </div>
                                                     <div className="flex flex-col justify-center gap-2">
                                                         <Text size="p1" weight="font-semibold" variant="title">{item.course.name}</Text>

@@ -5,6 +5,7 @@ import TableColumn from "@components/table/table-column";
 import TableHeader from "@components/table/table-header";
 import Links from "@components/link";
 import Image from "next/image";
+import ImageBlur from "@components/dynamic-blur";
 
 const Promocion = () => {
     return (
@@ -32,7 +33,7 @@ const Promocion = () => {
                                 <TableColumn >
                                     <div className="flex flex-row justify-start w-full gap-2">
                                         <div className="relative w-20 h-12">
-                                            <Image src={item.img} alt="Promocion Image - (Avanzu)" fill className="object-center object-cover rounded-xl" />
+                                            <ImageBlur src={item.img} alt="Promocion Image - (Avanzu)" fill className="object-center object-cover rounded-xl" />
                                         </div>
                                         <div className="flex flex-col items-start w-full gap-2">
                                             <Text variant="title" weight="font-semibold" size="p2" color="text-white">

@@ -1,4 +1,5 @@
 import Button from "@components/button";
+import ImageBlur from "@components/dynamic-blur";
 import Modal from "@components/modal/modal-main";
 import Text from "@components/text";
 import { useProfile } from "@context/auth";
@@ -44,7 +45,7 @@ const ModalChangeProfile = ({
             <div className="flex flex-col w-full gap-4">
                 <div className="flex flex-row items-end w-full gap-2 bg-purple-300">
                     <div className="w-full relative h-[200px] ">
-                        <Image src={file || `${URL_DUMMY_IMAGE}?name=${userInfo.name}&size=120`} alt="Image" fill className="object-contain object-center" />
+                        <ImageBlur src={file || `${URL_DUMMY_IMAGE}?name=${userInfo.name}&size=120`} alt="Image" fill className="object-contain object-center" />
                         <div className="w-full flex justify-end gap-1 items-end h-full pb-4 pr-4">
                             <TbExclamationCircle className="text-lg text-orange-200 " />
                             <Text size="cpt1" color="text-content-secondary" weight="font-normal">200x200 píxeles</Text>

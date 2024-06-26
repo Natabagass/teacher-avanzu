@@ -1,3 +1,4 @@
+import ImageBlur from "@components/dynamic-blur";
 import Input from "@components/input";
 import Select from "@components/select";
 import Text from "@components/text";
@@ -103,7 +104,7 @@ const CrearCursoStep1 = ({
                             :
                             photo && loading == false ?
                                 <div className="relative w-full min-h-[300px]">
-                                    <Image src={photo} alt="Banner - (Avanzu)" fill className="object-cover rounded-2xl object-center" />
+                                    <ImageBlur src={photo} alt="Banner - (Avanzu)" fill className="object-cover rounded-2xl object-center" />
                                 </div>
                                 :
                                 <div className="w-full h-[300px]">

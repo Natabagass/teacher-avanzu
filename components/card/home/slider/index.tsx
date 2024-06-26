@@ -1,5 +1,6 @@
 'use client'
 
+import ImageBlur from "@components/dynamic-blur";
 import Text from "@components/text";
 import Image from "next/image";
 import { LuClock } from "react-icons/lu";
@@ -45,7 +46,7 @@ const SliderCourseDetail = () => {
                         <SwiperSlide key={item.id} className="border text-left w-full border-stroke-primary rounded-xl p-2">
                             <div className="flex flex-col gap-3 items-start">
                                 <div className="relative w-full h-[180px]">
-                                    <Image src={item.img} alt="Course Image - (Avanzu)" fill className="object-cover object-center rounded-lg" />
+                                    <ImageBlur src={item.img} alt="Course Image - (Avanzu)" fill className="object-cover object-center rounded-lg" />
                                 </div>
                                 <Text variant="title" size="p1" weight="font-semibold">{item.title}</Text>
                                 <div className="flex gap-2 items-center flex-row">
@@ -59,7 +60,7 @@ const SliderCourseDetail = () => {
                                     </span>
                                     <div className="flex w-full flex-row items-center gap-2">
                                         <div className="relative h-4 w-4">
-                                            <Image src={item.author.img} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
+                                            <ImageBlur src={item.author.img} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
                                         </div>
                                         <Text size="cpt1" weight="font-medium" color="text-white">{item.author.name}</Text>
                                     </div>

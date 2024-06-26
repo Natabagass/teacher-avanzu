@@ -23,37 +23,18 @@ const HogarPage = () => {
             const resCursos = await fetch('/api/users/self/courses?page=1&per-page=1&as-creator=true', { method: 'GET' });
             const jsonCursos = await resCursos.json();
             if (resCursos.status === 200) {
-                setTotal({ ...total, loadingCursos: false })
+                setTotal((prevTotal) => ({ ...prevTotal, loadingCursos: false, cursos: jsonCursos.metadata?.totalCount }));
             }
-            setTotal((prevTotal) => ({
-                ...prevTotal,
-                cursos: jsonCursos.metadata?.totalCount
-            }));
         } catch (error) {
             console.error('Error fetching courses:', error);
         }
-
-        // try {
-        //     const res = await fetch('/api/analyses/master', {
-        //         method: 'GET'
-        //     })
-
-        //     if (res.status === 200) {
-        //         const data = await res.json()
-        //         setAnalyticData(data)
-        //     }
-        // } catch (error) { }
 
         try {
             const resStudents = await fetch('/api/users/self/courses/students?page=1&per-page=1', { method: 'GET' });
             const jsonStudents = await resStudents.json();
             if (resStudents.status === 200) {
-                setTotal({ ...total, loadingStudent: false })
+                setTotal((prevTotal) => ({ ...prevTotal, loadingStudent: false, student: jsonStudents.metadata?.totalCount }));
             }
-            setTotal((prevTotal) => ({
-                ...prevTotal,
-                student: jsonStudents.metadata?.totalCount
-            }));
         } catch (error) {
             console.error('Error fetching students:', error);
         }

@@ -1,5 +1,6 @@
 import BackButton from "@components/button/back";
 import CardHelp from "@components/card/help";
+import ImageBlur from "@components/dynamic-blur";
 import Links from "@components/link";
 import Text from "@components/text";
 import Layout from "@layout/main-layout";
@@ -11,7 +12,7 @@ const AyudaPage = () => {
             <BackButton />
             <div className="relative flex flex-row w-full  justify-between items-center bg-neon-green-500 rounded-xl mt-6">
                 <div className="w-full h-[105px]">
-                    <Image alt="Background - (Avanzu)" src={'/assets/dashboard/background-help.png'} className="object-cover object-center" fill />
+                    <ImageBlur alt="Background - (Avanzu)" src={'/assets/dashboard/background-help.png'} className="object-cover object-center" fill />
                 </div>
                 <div className="absolute inset-0 px-3 py-6 flex flex-row w-full items-center">
                     <div className="flex flex-col w-[90%] gap-1">

@@ -1,3 +1,4 @@
+import ImageBlur from "@components/dynamic-blur";
 import Text from "@components/text";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,7 +21,7 @@ const CardPregunta = ({
     return (
         <div className="flex flex-row gap-4 w-full border items-center border-stroke-primary rounded-2xl p-2">
             <div className="w-[20%] relative h-[130px]">
-                <Image src={data.image} alt="Image Q&A - (Avanzu)" fill className="rounded-xl object-cover object-center" />
+                <ImageBlur src={data.image} alt="Image Q&A - (Avanzu)" fill className="rounded-xl object-cover object-center" />
             </div>
             <div className="flex flex-col w-full gap-3">
                 <div className="flex flex-row items-center w-full justify-between">
@@ -32,7 +33,7 @@ const CardPregunta = ({
                 <div className="flex flex-col bg-purple-100 p-3 rounded-xl w-full gap-4">
                     <div className="flex flex-row w-full gap-2">
                         <div className="relative h-6 w-6">
-                            <Image src={data.user.profile} alt="User Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
+                            <ImageBlur src={data.user.profile} alt="User Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
                         </div>
                         <Text size="p2" weight="font-medium" variant="subTitle-sub">{data.user.name}</Text>
                         <span className="text-content-secondary">

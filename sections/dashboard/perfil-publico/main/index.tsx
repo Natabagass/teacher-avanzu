@@ -9,6 +9,7 @@ import { useState } from "react";
 import { IoMdMore } from "react-icons/io";
 import { TbBook, TbChecklist, TbDownload, TbNotebook } from "react-icons/tb";
 import SliderCourseDetail from "@components/slider/course-detail";
+import ImageBlur from "@components/dynamic-blur";
 
 const PerfilPublicoPage = () => {
     const [open, setOpen] = useState(false)
@@ -20,11 +21,11 @@ const PerfilPublicoPage = () => {
             <BackButton />
 
             <div className="w-full relative min-h-[300px]">
-                <Image src={'/assets/profile/bg.png'} fill alt="Profile Background - (Avanzu)" className="object-cover rounded-2xl object-center z-1" />
+                <ImageBlur src={'/assets/profile/bg.png'} fill alt="Profile Background - (Avanzu)" className="object-cover rounded-2xl object-center z-1" />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-base-dark/50 to-base-dark/70 z-0"></div>
                 <div className="flex absolute flex-col justify-center w-full h-full px-6 py-8 items-start z-2">
                     <div className="rounded-full border-4 border-white w-36 h-36 relative">
-                        <Image src={'/assets/cursos/person-2.png'} alt="Profile - (Avanzu)" fill className="object-cover rounded-full object-center" />
+                        <ImageBlur src={'/assets/cursos/person-2.png'} alt="Profile - (Avanzu)" fill className="object-cover rounded-full object-center" />
                     </div>
                     <div className="mt-4">
                         <Text size="h3" weight="font-semibold" variant="title">

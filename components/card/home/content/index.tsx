@@ -1,6 +1,7 @@
 'use client'
 
 import Button from "@components/button";
+import ImageBlur from "@components/dynamic-blur";
 import Text from "@components/text";
 import Image from "next/image";
 import { useState } from "react";
@@ -74,7 +75,7 @@ const CardCourseContent = ({
                 <div className={`${detail ? 'h-[480px]' : 'h-[420px]'} border w-full relative bg-base-dark border-stroke-primary rounded-2xl overflow-hidden`}>
                     <div className="p-2 flex flex-col gap-6">
                         <div className="relative w-full min-h-[195px] bg-base-dark">
-                            <Image src={item.img} alt="Image Course - (Avanzu)" fill className="object-cover object-center rounded-lg" />
+                            <ImageBlur src={item.img} alt="Image Course - (Avanzu)" fill className="object-cover object-center rounded-lg" />
                             {
                                 item.tag !== 'None' &&
                                 <div className="absolute p-2">
@@ -97,7 +98,7 @@ const CardCourseContent = ({
                                 </span>
                                 <div className="flex w-full flex-row items-center gap-2">
                                     <div className="relative h-4 w-4">
-                                        <Image src={item.author.img} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
+                                        <ImageBlur src={item.author.img} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
                                     </div>
                                     <Text size="cpt1" weight="font-medium" color="text-white">{item.author.name}</Text>
                                 </div>

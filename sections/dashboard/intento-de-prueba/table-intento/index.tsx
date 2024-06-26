@@ -1,5 +1,6 @@
 'use client'
 
+import ImageBlur from "@components/dynamic-blur";
 import Links from "@components/link";
 import Table from "@components/table";
 import TableColumn from "@components/table/table-column";
@@ -40,7 +41,7 @@ const TableIntento = () => {
                                 <TableColumn>
                                     <div className="flex flex-row items-center text-left justify-center w-full gap-2">
                                         <div className="relative w-14 h-14">
-                                            <Image src={item.profile.img} alt="Promocion Image - (Avanzu)" fill className="object-center object-cover rounded-full" />
+                                            <ImageBlur src={item.profile.img} alt="Promocion Image - (Avanzu)" fill className="object-center object-cover rounded-full" />
                                         </div>
                                         <div className="flex flex-col gap-2">
                                             <Text variant="subTitle" weight="font-normal" size="p2" color="text-white">

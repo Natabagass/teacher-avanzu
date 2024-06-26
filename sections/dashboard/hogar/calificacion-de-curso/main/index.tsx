@@ -1,16 +1,21 @@
+'use client'
+
 import BackButton from "@components/button/back";
 import FilterCalificacion from "../filter";
 import CalificacionList from "../list";
 import Text from "@components/text";
+import { useState } from "react";
 
 const CalificacionDeCursosPage = () => {
+    const [filteredData, setFilteredData] = useState(dataResponse);
+
     return (
         <div className="w-full flex justify-center">
             <div className="flex w-[75%] gap-6 justify-center flex-col items-start">
                 <BackButton />
                 
                 <Text size="h3" weight="font-semibold" variant="title">Calificación de los cursos</Text>
-                <FilterCalificacion />
+                <FilterCalificacion filteredData={filteredData} dataResponse={dataResponse} setFilteredData={setFilteredData} />
                 <CalificacionList
                     data={dataResponse}
                 />

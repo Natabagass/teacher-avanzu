@@ -1,3 +1,4 @@
+import ImageBlur from "@components/dynamic-blur";
 import Text from "@components/text";
 import Image from "next/image";
 
@@ -14,7 +15,7 @@ const BadgeCard = ({
         <div className="border border-stroke-primary rounded-3xl bg-purple-100 p-2 flex flex-col gap-6">
             <div className="bg-purple-200 rounded-2xl flex py-5 px-12  justify-center items-center">
                 <div className="relative min-h-[120px] min-w-[240px] w-full">
-                    <Image src={item.img} alt="Image Badge - (Avanzu)" fill className="object-contain object-center" />
+                    <ImageBlur src={item.img} alt="Image Badge - (Avanzu)" fill className="object-contain object-center" />
                 </div>
             </div>
             <div className="flex flex-col gap-1 p-2">

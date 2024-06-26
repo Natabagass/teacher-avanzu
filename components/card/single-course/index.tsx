@@ -8,6 +8,7 @@ import { IoIosStarOutline } from "react-icons/io";
 import { LuClock } from "react-icons/lu";
 import { TbBooks } from "react-icons/tb";
 import { secondtoHours } from "@utils/formatter/hours-formatter";
+import ImageBlur from "@components/dynamic-blur";
 
 const SingleCourse = ({
     item,
@@ -18,7 +19,7 @@ const SingleCourse = ({
         <Link href={`/dashboard/mi-curso/detalles/${item.slug}`} className={`h-[420px] border w-full relative bg-base-dark border-stroke-primary rounded-2xl overflow-hidden`}>
             <div className="p-2 flex flex-col gap-6">
                 <div className="relative w-full min-h-[195px] bg-base-dark">
-                    <Image src={item.thumbnail} alt="Image Course - (Avanzu)" fill className="object-cover object-center rounded-lg" />
+                    <ImageBlur src={item.thumbnail} alt="Image Course - (Avanzu)" fill className="object-cover object-center rounded-lg" />
                     {
                         item.tagline !== 'None' &&
                         <div className="absolute p-2">
@@ -41,7 +42,7 @@ const SingleCourse = ({
                         </span>
                         <div className="flex w-full flex-row items-center gap-2">
                             <div className="relative h-4 w-4">
-                            <Image src={item.teacherPicture || `${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
+                            <ImageBlur src={item.teacherPicture || `${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
                             </div>
                             <Text size="cpt1" weight="font-medium" color="text-white">{item.teacher}</Text>
                         </div>

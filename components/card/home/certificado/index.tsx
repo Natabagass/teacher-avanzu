@@ -1,6 +1,7 @@
 'use client'
 
 import Button from "@components/button";
+import ImageBlur from "@components/dynamic-blur";
 // import ModalShare from "@components/modal/home/share";
 import Text from "@components/text";
 import Image from "next/image";
@@ -33,7 +34,7 @@ const CardCertificado = ({
                                     </div>
                                 </div>
                                 <div className="relative min-w-[90px] min-h-[125px]">
-                                    <Image src={'/assets/dashboard/certificado-badge.svg'} alt="Badge Cert - (Avanzu)" fill className="object-cover object-center" />
+                                    <ImageBlur src={'/assets/dashboard/certificado-badge.svg'} alt="Badge Cert - (Avanzu)" fill className="object-cover object-center" />
                                 </div>
                             </div>
                             <div className="p-2 flex flex-col gap-4">

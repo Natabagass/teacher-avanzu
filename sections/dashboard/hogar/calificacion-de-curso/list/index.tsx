@@ -1,5 +1,6 @@
 'use client'
 
+import ImageBlur from "@components/dynamic-blur";
 import EmptyList from "@components/empty-list";
 import Text from "@components/text";
 import CheckStar from "@components/utils/check-star";
@@ -42,7 +43,7 @@ const CalificacionList = ({
                                 <div key={item.id} className="flex flex-col w-full border gap-3 p-3 border-stroke-primary rounded-2xl">
                                     <div className="flex flex-row w-full gap-2 items-center">
                                         <div className="relative h-8 w-8">
-                                            <Image src={item.img} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
+                                            <ImageBlur src={item.img} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
                                         </div>
                                         <Text size="p2" variant="subTitle" weight="font-medium" color="text-white">{item.name}</Text>
                                         <MdOutlineKeyboardArrowRight className="text-content-primary" />

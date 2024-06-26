@@ -1,18 +1,25 @@
+'use client'
+
 import Text from "@components/text";
 import RevisionList from "../list";
 import FilterRevision from "../filter";
 import Layout from "@layout/main-layout";
+import { useState } from "react";
 
 const RevisionCalificacionesPage = () => {
-    return (
-        <Layout variant="dashboard" className="w-full flex flex-col gap-6">
-            <Text size="h3" weight="font-semibold" variant="title">Revisión y calificaciones</Text>
+    const [filteredData, setFilteredData] = useState(dataResponse);
 
-            <FilterRevision />
-            <RevisionList
-                data={dataResponse}
-            />
-        </Layout>
+    return (
+        <>
+            <Layout variant="content-dashboard" className="flex flex-col gap-6">
+                <Text color="text-white" weight="font-semibold" size="h3" variant="title">Revisión y calificaciones</Text>
+
+                <FilterRevision filteredData={filteredData} dataResponse={dataResponse} setFilteredData={setFilteredData} />
+                <RevisionList
+                    data={filteredData}
+                />
+            </Layout>
+        </>
     );
 }
 

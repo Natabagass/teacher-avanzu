@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import { IoIosMore } from "react-icons/io";
 import ModalMoreNotif from "../modal";
+import ImageBlur from "@components/dynamic-blur";
 
 const CardNotif = ({
     item,
@@ -31,7 +32,7 @@ const CardNotif = ({
                     </span>
                 }
                 <div className="relative w-14 h-14">
-                    <Image src={item.img} alt="Profile - (Avanzu)" fill className="object-cover object-center rounded-full" />
+                    <ImageBlur src={item.img} alt="Profile - (Avanzu)" fill className="object-cover object-center rounded-full" />
                 </div>
             </div>
             <div className="flex flex-col w-full gap-2">

@@ -1,4 +1,5 @@
 import Button from "@components/button";
+import ImageBlur from "@components/dynamic-blur";
 import Text from "@components/text";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,7 +20,7 @@ const CardTitleDetailsIntentos = ({
     return (
         <div className="border mt-6 border-stroke-primary p-3 rounded-2xl flex flex-row w-full gap-4">
             <div className="relative w-[15%] min-h-20">
-                <Image src={data.image} fill className="object-cover object-center rounded-xl" alt="Image Cuestion - (Avanzu)" />
+                <ImageBlur src={data.image} fill className="object-cover object-center rounded-xl" alt="Image Cuestion - (Avanzu)" />
             </div>
             <div className="flex flex-col w-full gap-3">
                 <div className="flex flex-row items-center w-full justify-between">

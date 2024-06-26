@@ -17,6 +17,7 @@ import { DetailCourseTypes } from "data/types/interface/course/detail";
 import { secondtoHours } from "@utils/formatter/hours-formatter";
 import { URL_DUMMY_IMAGE } from "@utils/endpoint";
 import ReactPlayer from "react-player";
+import ImageBlur from "@components/dynamic-blur";
 
 const CursosPreview = ({
     data,
@@ -98,7 +99,7 @@ const CursosPreview = ({
                     <div className="flex flex-row gap-2 justify-end items-start">
                         <div className="flex flex-row gap-2 w-full items-center">
                             <div className="relative h-14 w-14">
-                                <Image src={data?.teacherPicture || `${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
+                                <ImageBlur src={data?.teacherPicture || `${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
                             </div>
                             <Text weight="font-semibold" size="p1">{data.teacher}</Text>
                         </div>

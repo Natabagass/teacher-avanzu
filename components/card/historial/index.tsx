@@ -1,6 +1,7 @@
 'use client'
 
 import Button from "@components/button";
+import ImageBlur from "@components/dynamic-blur";
 import Links from "@components/link";
 import Text from "@components/text";
 import Image from "next/image";
@@ -34,7 +35,7 @@ const HistorialCard = ({
     return (
         <div className="flex flex-row w-full gap-4 border border-stroke-primary p-2 mt-6 items-center rounded-2xl">
             <div className="relative w-[20%] h-[230px]">
-                <Image src={data.img} alt="Image Historial" fill className="object-center object-cover rounded-xl" />
+                <ImageBlur src={data.img} alt="Image Historial" fill className="object-center object-cover rounded-xl" />
             </div>
             <div className="flex flex-col w-full gap-4">
                 <div className="flex flex-row w-full justify-between items-center">
@@ -49,7 +50,7 @@ const HistorialCard = ({
                         </span>
                         <div className="flex w-full flex-row items-center gap-2">
                             <div className="relative h-4 w-4">
-                                <Image src={data.author.img} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
+                                <ImageBlur src={data.author.img} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
                             </div>
                             <Text size="cpt1" weight="font-medium" color="text-white">{data.author.name}</Text>
                         </div>

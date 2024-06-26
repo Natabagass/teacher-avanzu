@@ -1,3 +1,4 @@
+import ImageBlur from "@components/dynamic-blur";
 import Modal from "@components/modal/modal-main";
 import Text from "@components/text";
 import { URL_DUMMY_IMAGE } from "@utils/endpoint";
@@ -38,7 +39,7 @@ const ModalProfile = ({
                                             : `${URL_DUMMY_IMAGE}?name=${userInfo.name}&size=120`
                                         : userInfo.profilePicture
                                 } alt="Person Image - (Avanzu)" fill className="object-cover rounded-full object-center" /> */}
-                            <Image src={`${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Person Image - (Avanzu)" fill className="object-cover rounded-full object-center" />
+                            <ImageBlur src={`${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Person Image - (Avanzu)" fill className="object-cover rounded-full object-center" />
                         </div>
                         <div className="flex flex-col w-full justify-between">
                             <Text size="p2" weight="font-semibold" variant="title">Bima xavier</Text>

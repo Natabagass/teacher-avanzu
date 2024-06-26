@@ -1,5 +1,6 @@
 'use client'
 
+import ImageBlur from "@components/dynamic-blur";
 import ModalChangeBackground from "@components/modal/change-background-profile";
 import ModalChangeProfile from "@components/modal/change-profile";
 import { useProfile } from "@context/auth";
@@ -141,7 +142,7 @@ const ChangePhoto = () => {
     return (
         <>
             <div className="w-full relative min-h-[300px]">
-                <Image src={
+                <ImageBlur src={
                     userInfo.backgroundPicture === '' || userInfo.backgroundPicture == null
                         ? '/assets/profile/bg.png'
                         : userInfo.backgroundPicture
@@ -168,7 +169,7 @@ const ChangePhoto = () => {
                             setOpen={setOpen}
                         />
                         <label htmlFor="file-upload" className="rounded-full border-4 flex items-center w-full justify-center border-white relative min-w-[140px] min-h-[140px] overflow-hidden">
-                            <Image
+                            <ImageBlur
                                 src={
                                     userInfo.profilePicture && userInfo.profilePicture !== ''
                                         ? userInfo.profilePicture

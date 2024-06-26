@@ -2,6 +2,7 @@
 
 import Button from "@components/button";
 import BackButton from "@components/button/back";
+import ImageBlur from "@components/dynamic-blur";
 import Links from "@components/link";
 import LoadingPage from "@components/loading";
 import Table from "@components/table";
@@ -139,7 +140,7 @@ const MiCursoDetallesPage = () => {
                                             <TableColumn>
                                                 <div className="flex flex-row items-center justify-center w-full gap-2">
                                                     <div className="relative w-8 h-8">
-                                                        <Image src={`${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Promocion Image - (Avanzu)" fill className="object-center object-cover rounded-full" />
+                                                        <ImageBlur src={`${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Promocion Image - (Avanzu)" fill className="object-center object-cover rounded-full" />
                                                     </div>
                                                     <Text variant="subTitle" weight="font-normal" size="p2" color="text-white">
                                                         {item.name}

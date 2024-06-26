@@ -11,6 +11,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { TbChevronLeft, TbChevronRight } from "react-icons/tb";
 import ReactPaginate from "react-paginate";
 import ModalMoreRevision from "../modal/more";
+import ImageBlur from "@components/dynamic-blur";
 
 const RevisionList = ({
     data
@@ -47,7 +48,7 @@ const RevisionList = ({
                                     <div className="flex flex-row w-full justify-between">
                                         <div className="flex flex-row w-full gap-2 items-center">
                                             <div className="relative h-8 w-8">
-                                                <Image src={item.img} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
+                                                <ImageBlur src={item.img} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
                                             </div>
                                             <Text size="p2" variant="subTitle" weight="font-medium" color="text-white">{item.name}</Text>
                                             <MdOutlineKeyboardArrowRight className="text-content-primary" />

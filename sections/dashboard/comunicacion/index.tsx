@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { TbChevronLeft, TbChevronRight, TbSearch } from "react-icons/tb";
 import ReactPaginate from "react-paginate";
 import ModalComunicacion from "./modal";
+import ImageBlur from "@components/dynamic-blur";
 
 const ComunicacionPage = () => {
     const [state, setState] = useState({
@@ -69,7 +70,7 @@ const ComunicacionPage = () => {
                     currentItems.map((item) => (
                         <div key={item.id} className="border border-stroke-primary rounded-2xl p-2 flex flex-row w-full gap-3">
                             <div className="relative min-h-[150px] w-[30%]">
-                                <Image src={item.course.img} alt="Course - (Avanzu)" fill className="object-cover rounded-xl object-center" />
+                                <ImageBlur src={item.course.img} alt="Course - (Avanzu)" fill className="object-cover rounded-xl object-center" />
                             </div>
                             <div className="flex flex-col w-full gap-4">
                                 <div className="flex flex-row w-full items-center justify-between">
@@ -81,7 +82,7 @@ const ComunicacionPage = () => {
                                 <div className="p-4 bg-purple-100 rounded-xl flex flex-col gap-4">
                                     <div className="w-full items-center flex flex-row gap-2">
                                         <div className="relative w-8 h-8">
-                                            <Image src={item.ask.img} alt="Profile - (Avanzu)" fill className="object-cover rounded-full object-center" />
+                                            <ImageBlur src={item.ask.img} alt="Profile - (Avanzu)" fill className="object-cover rounded-full object-center" />
                                         </div>
                                         <Text size="p2" weight="font-medium" variant="subTitle">{item.ask.name}</Text>
                                         <span className="text-content-secondary">

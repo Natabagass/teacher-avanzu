@@ -5,6 +5,7 @@ import Image from "next/image";
 import Text from "@components/text";
 import { TbBooks } from "react-icons/tb";
 import { dollarFormatter } from "@utils/formatter/dollar-formatter";
+import ImageBlur from "@components/dynamic-blur";
 
 const TableSales = () => {
     return (
@@ -25,7 +26,7 @@ const TableSales = () => {
                             <TableColumn padding="py-4" className="w-full">
                                 <div className="flex flex-row items-center w-full gap-2">
                                     <div className="relative w-[60%] min-h-[100px]">
-                                        <Image src={item.course.img} fill alt="Image Course - (Avanzu)" className="rounded-2xl object-cover object-center" />
+                                        <ImageBlur src={item.course.img} fill alt="Image Course - (Avanzu)" className="rounded-2xl object-cover object-center" />
                                     </div>
                                     <div className="flex items-start flex-col w-full gap-2">
                                         <Text variant="title" weight="font-normal" size="p2" color="text-white">

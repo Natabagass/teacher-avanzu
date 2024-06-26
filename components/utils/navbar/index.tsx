@@ -1,6 +1,7 @@
 "use client"
 
 import BackButton from "@components/button/back";
+import ImageBlur from "@components/dynamic-blur";
 import ModalNotification from "@components/modal/home/notifications";
 import ModalProfile from "@components/modal/home/profile";
 import Text from "@components/text";
@@ -51,7 +52,7 @@ const NavDashboard = ({ scroll, close }: { scroll?: boolean, close: boolean }) =
                 <Layout variant="dashboard">
                     <div className="flex flex-row items-center w-full justify-between">
                         <Link href={'/dashboard/hogar'} className="relative w-full h-full">
-                            <Image width={130} height={100} className="object-contain object-center" src={'/assets/avanzu.png'} alt="Logo - (Avanzu)" />
+                            <ImageBlur width={130} height={100} className="object-contain object-center" src={'/assets/avanzu.png'} alt="Logo - (Avanzu)" />
                         </Link>
                         <div className="flex flex-row w-full justify-end cursor-pointer gap-3">
                             <Link href={'/dashboard/notificacion'}
@@ -61,7 +62,7 @@ const NavDashboard = ({ scroll, close }: { scroll?: boolean, close: boolean }) =
                             <div
                                 onClick={() => setState({ ...state, profile: !state.profile })}
                                 className="rounded-full p-3 relative w-10 min-h-full">
-                                <Image src={
+                                <ImageBlur src={
                                     userInfo.profilePicture && userInfo.profilePicture !== ''
                                         ? userInfo.profilePicture
                                         : userInfo.name && userInfo.name !== ''

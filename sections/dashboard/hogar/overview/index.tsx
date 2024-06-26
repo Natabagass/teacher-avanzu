@@ -1,6 +1,7 @@
 'use client'
 
 import Button from "@components/button";
+import ImageBlur from "@components/dynamic-blur";
 import Links from "@components/link";
 import LoadingPage from "@components/loading";
 import Text from "@components/text";
@@ -53,11 +54,14 @@ const HeaderHogar = ({ total }: { total: { cursos: number, loadingCursos: boolea
         }
     ]
 
+    console.log(total.loadingStudent)
+    console.log(total.cursos)
+
     return (
         <Layout variant="dashboard" className="flex flex-col w-full gap-6">
             <div className="relative flex flex-row w-full  justify-between items-center bg-neon-green-500 rounded-xl">
                 <div className="w-full h-[105px]">
-                    <Image alt="Background - (Avanzu)" src={'/assets/dashboard/background-help.png'} className="object-cover object-center" fill />
+                    <ImageBlur alt="Background - (Avanzu)" src={'/assets/dashboard/background-help.png'} className="object-cover object-center" fill />
                 </div>
                 <div className="absolute inset-0 px-3 py-6 flex flex-row w-full items-center">
                     <div className="flex flex-col w-[90%] gap-1">

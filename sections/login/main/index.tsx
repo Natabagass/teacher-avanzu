@@ -1,6 +1,7 @@
 "use client"
 
 import Button from "@components/button";
+import ImageBlur from "@components/dynamic-blur";
 import Input from "@components/input";
 import Text from "@components/text";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -79,13 +80,13 @@ const LoginPage = () => {
                     <div className="flex flex-col h-full w-full justify-between">
                         <div className="flex flex-col pt-6 pl-10 w-[85%]">
                             <Link href={'/'} className="relative mb-4 w-full h-full">
-                                <Image width={130} height={100} className="object-contain object-center" src={'/assets/avanzu.png'} alt="Logo - (Avanzu)" />
+                                <ImageBlur width={130} height={100} className="object-contain object-center" src={'/assets/avanzu.png'} alt="Logo - (Avanzu)" />
                             </Link>
                             <Text size="h1" weight="font-semibold">¡Empieza a aprender con nosotros hoy mismo!</Text>
                             <Text size="p2" weight="font-normal">Descubra un mundo de conocimientos con nuestra variada selección de cursos</Text>
                         </div>
                         <div className="relative w-full h-full">
-                            <Image src={'/assets/landing/login-illus.png'} alt="Illus Login - (Avanzu)" className="object-cover object-left" fill />
+                            <ImageBlur src={'/assets/landing/login-illus.png'} alt="Illus Login - (Avanzu)" className="object-cover object-left" fill />
                         </div>
                     </div>
                 </div>
@@ -157,7 +158,7 @@ const LoginPage = () => {
                                 className="w-full flex flex-row gap-3 items-center justify-center"
                                 onClick={() => { }}
                             >
-                                <Image src={'/assets/icon/google.svg'} alt="Google Icon - (Avanzu)" width={18} height={18} />
+                                <ImageBlur src={'/assets/icon/google.svg'} alt="Google Icon - (Avanzu)" width={18} height={18} />
                                 Continue with Google
                             </Button>
 
@@ -167,7 +168,7 @@ const LoginPage = () => {
                                 className="w-full flex flex-row gap-3 items-center justify-center"
                                 onClick={() => { }}
                             >
-                                <Image src={'/assets/icon/facebookColor.svg'} alt="Facebook Icon - (Avanzu)" width={18} height={18} />
+                                <ImageBlur src={'/assets/icon/facebookColor.svg'} alt="Facebook Icon - (Avanzu)" width={18} height={18} />
                                 Continue with Facebook
                             </Button>
                         </div>

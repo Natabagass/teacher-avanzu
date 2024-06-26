@@ -10,6 +10,7 @@ import { LuMaximize } from "react-icons/lu";
 import { DetailCourseTypes } from "data/types/interface/course/detail";
 import { ReviewsTypes } from "data/types/interface/reviews";
 import { URL_DUMMY_IMAGE } from "@utils/endpoint";
+import ImageBlur from "@components/dynamic-blur";
 
 type Ratings = {
     ratingOf5s: number;
@@ -64,7 +65,7 @@ const ResenasList = ({
                                         <div className="flex flex-row w-full gap-2">
                                             <div className="flex flex-row items-center gap-2">
                                                 <div className="relative h-6 w-6">
-                                                    <Image src={`${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
+                                                    <ImageBlur src={`${URL_DUMMY_IMAGE}?name=user&size=120`} alt="Author Profile - (Avanzu)" fill className="rounded-full object-cover object-center" />
                                                 </div>
                                                 <Text size="p2" weight="font-medium" color="text-white">{data.username}</Text>
                                             </div>
