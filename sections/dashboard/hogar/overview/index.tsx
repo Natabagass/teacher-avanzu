@@ -54,9 +54,6 @@ const HeaderHogar = ({ total }: { total: { cursos: number, loadingCursos: boolea
         }
     ]
 
-    console.log(total.loadingStudent)
-    console.log(total.cursos)
-
     return (
         <Layout variant="dashboard" className="flex flex-col w-full gap-6">
             <div className="relative flex flex-row w-full  justify-between items-center bg-neon-green-500 rounded-xl">

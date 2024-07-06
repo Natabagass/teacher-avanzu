@@ -2,6 +2,7 @@
 
 import Text from "@components/text";
 import CheckStar from "@components/utils/check-star";
+import { ReviewsTypes } from "data/types/interface/reviews";
 import { useState } from "react";
 import { TbStarFilled } from "react-icons/tb";
 
@@ -15,7 +16,8 @@ const FilterRevision = ({ setFilteredData, filteredData, dataResponse }: { setFi
             setFilteredData(dataResponse);
         } else {
             setFilteredData(dataResponse.filter((item: any) => item.star === stars));
-        }    };
+        }
+    };
     return (
         <>
             {/* <div className="flex flex-row w-full gap-3">
@@ -39,19 +41,36 @@ const FilterRevision = ({ setFilteredData, filteredData, dataResponse }: { setFi
                     ))
                 }
             </div> */}
-            <div className="flex flex-row w-full gap-3">
-                {
-                    Object.entries(starCounts).map(([star, count]) => (
-                        <div key={star} onClick={() => toggle(Number(star))} className={`${clicked === Number(star) ? 'bg-neon-green-main' : 'bg-purple-200'} cursor-pointer flex flex-row gap-2 py-2 px-4 items-center rounded-3xl`}>
+            <div className="flex flex-row w-full gap-3 overflow-x-scroll">
+                {Object.entries(starCounts)
+                    .filter(([star, count]) => Number(star) === 0 || count > 0) // Filter untuk hanya menampilkan entri dengan count > 0 atau entri dengan star === 0
+                    .map(([star, count]) => (
+                        <div
+                            key={star}
+                            onClick={() => toggle(Number(star))}
+                            className={`${clicked === Number(star) ? 'bg-neon-green-main' : 'bg-purple-200'} cursor-pointer flex flex-row gap-2 py-2 px-4 items-center rounded-3xl`}
+                        >
                             {Number(star) === 0 ?
-                                <Text size="p2" weight="font-medium" color={`${clicked === Number(star) ? 'text-purple-50' : 'text-white'}`}>Todos</Text>
+                                <Text
+                                    size="p2"
+                                    weight="font-medium"
+                                    color={`${clicked === Number(star) ? 'text-purple-50' : 'text-white'}`}
+                                >
+                                    Todos
+                                </Text>
                                 :
                                 <>
-                                    <CheckStar 
+                                    <CheckStar
                                         star={Number(star)}
                                         empty={false}
                                     />
-                                    <Text size="p2" weight="font-medium" color={`${clicked === Number(star) ? 'text-purple-50' : 'text-white'}`}>{count}</Text>
+                                    <Text
+                                        size="p2"
+                                        weight="font-medium"
+                                        color={`${clicked === Number(star) ? 'text-purple-50' : 'text-white'}`}
+                                    >
+                                        {count}
+                                    </Text>
                                 </>
                             }
                         </div>
@@ -67,19 +86,10 @@ export default FilterRevision;
 interface StarCounts {
     [key: number]: number;
 }
-interface Review {
-    id: number;
-    name: string;
-    img: string;
-    course: string;
-    star: number;
-    date: string;
-    comment: string;
-}
 
-const calculateStarCounts = (reviews: Review[]): StarCounts => {
+const calculateStarCounts = (reviews: ReviewsTypes): StarCounts => {
     const starCounts: StarCounts = {
-        0: reviews.length,
+        0: reviews.records.length,
         1: 0,
         2: 0,
         3: 0,
@@ -87,43 +97,10 @@ const calculateStarCounts = (reviews: Review[]): StarCounts => {
         5: 0,
     };
 
-    reviews.forEach((review) => {
-        starCounts[review.star]++;
+    reviews.records.forEach((review) => {
+        const roundedRating = Math.ceil(review.rating);
+        starCounts[roundedRating]++;
     });
 
     return starCounts;
 };
-
-
-export const filter = [
-    {
-        id: 1,
-        star: 0,
-        response: 100,
-    },
-    {
-        id: 2,
-        star: 1,
-        response: 100,
-    },
-    {
-        id: 3,
-        star: 2,
-        response: 100,
-    },
-    {
-        id: 4,
-        star: 3,
-        response: 40,
-    },
-    {
-        id: 5,
-        star: 4,
-        response: 10,
-    },
-    {
-        id: 6,
-        star: 5,
-        response: 23,
-    },
-]
