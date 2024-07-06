@@ -1,3 +1,5 @@
+'use client'
+
 import BackButton from "@components/button/back";
 import CardHelp from "@components/card/help";
 import ImageBlur from "@components/dynamic-blur";
