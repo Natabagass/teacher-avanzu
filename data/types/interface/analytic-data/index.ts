@@ -3,14 +3,13 @@ export interface AnalyticData {
     teachers: number,
     courses: number,
     ttv: string,
-    userAnalyses: {
+    userAnalytics: {
         months: {
             newUsers: number,
-            deletedUsers: number,
-            users: number
+            removedUsers: number,
         }[]
     }[],
-    transactionAnalyses: {
+    transactionAnalytics: {
         months: {
             transactionVolume: string
             coursesPercent: number,
@@ -26,18 +25,17 @@ export const AnalyticDataValue: AnalyticData =
     teachers: 0,
     courses: 0,
     ttv: "0",
-    userAnalyses: [
+    userAnalytics: [
         {
             months: [
                 {
                     newUsers: 0,
-                    deletedUsers: 0,
-                    users: 0
+                    removedUsers: 0,
                 }
             ]
         }
     ],
-    transactionAnalyses: [
+    transactionAnalytics: [
         {
             months: [
                 {

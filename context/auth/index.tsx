@@ -45,12 +45,17 @@ export const ProfileUserProvider = ({ children }: { children: React.ReactNode })
     });
 
     const { data: user } = useSession()
-    console.log(user)
 
     const fetchWithRetry = async (url: string, retries = 3) => {
         for (let i = 0; i < retries; i++) {
             try {
                 const res = await fetch(url);
+                if (res.status !== 200) {
+                    await signOut({
+                        redirect: true,
+                        callbackUrl: '/'
+                    });
+                }
                 return await res.json();
             } catch (error) {
                 if (i < retries - 1) {
@@ -64,13 +69,19 @@ export const ProfileUserProvider = ({ children }: { children: React.ReactNode })
             }
         }
     };
-    
+
     const dataUser = async () => {
         try {
             const data = await fetchWithRetry('/api/users/me');
 
-            if (data)
-            setUserInfo(data);
+            if (data) {
+                setUserInfo(data)
+            } else {
+                await signOut({
+                    redirect: true,
+                    callbackUrl: '/'
+                });
+            }
         } catch (error) {
             await signOut({
                 redirect: true,
@@ -78,7 +89,7 @@ export const ProfileUserProvider = ({ children }: { children: React.ReactNode })
             });
         }
     };
-    
+
     useEffect(() => {
         if (user?.user.token) {
             dataUser();

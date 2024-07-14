@@ -1,22 +1,21 @@
 'use client'
 
 import Layout from "@layout/main-layout";
-import SalesStatistic from "../sales-statistic";
-import HeaderHogar from "../overview";
-import LastSales from "../last-sales";
-import CursosPopular from "../cursos-popular";
+import OverviewActuation from "./overview";
 import { useEffect, useState } from "react";
-import { AnalyticData, AnalyticDataValue } from "data/types/interface/analytic-data";
+import LastSalesActuation from "./last-sales";
+import SalesStatistic from "../hogar/sales-statistic";
 import LoadingPage from "@components/loading";
+import UserAnalytic from "./analytic";
 
-const HogarPage = () => {
+const ActuationPage = () => {
     const [total, setTotal] = useState({
         cursos: 0,
+        loadingAnalytic: false,
         loadingCursos: true,
         loadingStudent: true,
         student: 0
     })
-    const [analyticData, setAnalyticData] = useState<AnalyticData>(AnalyticDataValue)
 
     const datas = async () => {
         try {
@@ -48,19 +47,19 @@ const HogarPage = () => {
         <div className="flex flex-col w-full gap-6">
             {
                 total.loadingStudent || total.loadingCursos ?
-                <LoadingPage />
-                :
-                <>
-                    <HeaderHogar total={total} />
-                    <Layout variant="dashboard" className="flex flex-row w-full justify-between gap-6">
-                        <LastSales />
-                        <SalesStatistic />
-                    </Layout>
-                    <CursosPopular />
-                </>
+                    <LoadingPage />
+                    :
+                    <>
+                        <OverviewActuation data={total} />
+                        <UserAnalytic loading={total.loadingAnalytic} />
+                        <Layout variant="dashboard" className="flex flex-row w-full justify-between gap-6">
+                            <LastSalesActuation />
+                            <SalesStatistic />
+                        </Layout>
+                    </>
             }
         </div>
     );
 }
 
-export default HogarPage;
+export default ActuationPage;
