@@ -29,7 +29,6 @@ const ResenasList = ({
     reviews: ReviewsTypes,
     handlePageClick: () => void
 }) => {
-    console.log(reviews.records)
     const ratings = {
         ratingOf5s: item.ratingOf5s || 0,
         ratingOf4s: item.ratingOf4s || 0,

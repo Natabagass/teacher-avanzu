@@ -22,7 +22,7 @@ const RevisionCalificacionesPage = () => {
 
     const handlePageClick = ({ selected }: { selected: number }) => {
         let newPage = selected + 1;
-        let newUrl = `/api/bookmarks?${newPage}&per-page=6`;
+        let newUrl = `/api/users/self/courses/reviews?${newPage}&per-page=10`;
 
         if (selected + 1 > currentPage && urls.next) {
             newUrl = urls.next;
