@@ -71,3 +71,16 @@ export interface QNAItem {
     updatedAt: string
 }
 
+export const QNAItems: QNAItem = {
+    ID: 0,
+    courseID: 0,
+    userID: 0,
+    userDisplayName: '',
+    userProfilePicture: '',
+    question: '',
+    answer: '',
+    isAnswered: false,
+    createdAt: '',
+    updatedAt: ''
+}
+

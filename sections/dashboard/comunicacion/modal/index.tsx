@@ -7,41 +7,46 @@ import Text from "@components/text";
 import { Dispatch, SetStateAction } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import CreateAnswerCommunication from "./create-answer";
+import ListAnswerCommunication from "./list-answer";
+import { QNAItem, QNAItems } from "data/types/interface/course/qna";
 
 const ModalComunicacion = ({
     state,
     setState,
     setRefresh
 }: {
-    state: { open: boolean, id: number, status: boolean, courseID: number, page: number, answer: string, condition: boolean },
+    state: { page: number, open: boolean, condition: boolean, answer: boolean, item: QNAItem },
     setRefresh: Dispatch<SetStateAction<boolean>>,
-    setState: Dispatch<SetStateAction<{ id: number, open: boolean, courseID: number, status: boolean, page: number, answer: string, condition: boolean }>>,
+    setState: Dispatch<SetStateAction<{  page: number, open: boolean, answer: boolean, condition: boolean, item: QNAItem }>>,
 }) => {
     return (
         <Modal
             onClick={() => { }}
             open={state.open}
             color="bg-purple-100"
-            title="Respuesta"
+            title={state.item.isAnswered && state.answer === true ? 'Lista de respuestas y preguntas' : 'Respuesta'}
             width="w-medium"
             placement="center"
             onOutsideClick={() => {
-                setState({ ...state, open: false, status: false, id: 0, courseID: 0 })
+                setState({ ...state, open: false, item: QNAItems })
             }}
         >
             {
-                state.status ?
+                state.item.isAnswered && state.answer === true ?
                     <>
-                        <div className="w-full bg-purple-200 rounded-xl border items-center border-stroke-primary p-6 flex flex-col gap-4">
-                            <Text size="h2" weight="font-bold" variant="title">Tu respuesta</Text>
-                            <div className="bg-purple-100 w-full border border-stroke-primary p-4 text-center rounded-2xl">
-                                <Text size="p1" weight="font-medium">{state.answer}</Text>
-                            </div>
-                        </div>
+                        <ListAnswerCommunication 
+                            state={state} 
+                            setRefresh={setRefresh} 
+                            setState={setState} 
+                        />
                     </>
                     :
                     <>
-                        <CreateAnswerCommunication state={state} setState={setState} setRefresh={setRefresh} />
+                        <CreateAnswerCommunication 
+                            state={state} 
+                            setState={setState} 
+                            setRefresh={setRefresh}
+                        />
                     </>
             }
         </Modal>

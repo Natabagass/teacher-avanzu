@@ -11,13 +11,14 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
     const page = searchParams.get("page");
     const perPage = searchParams.get("per-page");
     const isAnswered = searchParams.get("isAnswered");
+    const search = searchParams.get("question");
 
     try {
         if (!TOKEN) {
             return new Response('Unauthorized', { status: 401 });
         }
 
-        const res = await axios.get(`${API_KEY}course-questions?page=${page}&per-page=${perPage}&isAnswered=${isAnswered}`, {
+        const res = await axios.get(`${API_KEY}course-questions?page=${page}&per-page=${perPage}&isAnswered=${isAnswered}${search ? `&question=${search}` : ''}`, {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -46,13 +47,14 @@ export async function POST(request: NextRequest, { params }: { params: { id: str
     const body = await request.json()
     const searchParams = request.nextUrl.searchParams
     const courseID = searchParams.get("courseID");
+    const search = searchParams.get("buscar");
 
     try {
         if (!TOKEN) {
             return new Response('Unauthorized', { status: 401 });
         }
 
-        const res = await axios.post(`${API_KEY}course-questions?courseID=${courseID}`,
+        const res = await axios.post(`${API_KEY}course-questions?courseID=${courseID}${search ? `&question=${search}` : ''}`,
             {
                 ...body
             },

@@ -4,6 +4,7 @@ import Text from "@components/text";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useModal } from "@hooks/modal-global";
 import { qnaSchema, QnaSchema } from "data/schema/qna";
+import { QNAItem, QNAItems } from "data/types/interface/course/qna";
 import { Dispatch, SetStateAction } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -12,9 +13,9 @@ const CreateAnswerCommunication = ({
     setState,
     setRefresh
 }: {
-    state: { open: boolean, id: number, status: boolean, page: number, courseID: number, answer: string, condition: boolean },
-    setState: Dispatch<SetStateAction<{ id: number, open: boolean, status: boolean, courseID: number, page: number, answer: string, condition: boolean }>>,
+    state: { page: number, open: boolean, condition: boolean, answer: boolean, item: QNAItem },
     setRefresh: Dispatch<SetStateAction<boolean>>,
+    setState: Dispatch<SetStateAction<{  page: number, open: boolean, answer: boolean, condition: boolean, item: QNAItem }>>,
 }) => {
     const { register, formState: { errors }, setError, handleSubmit } = useForm<QnaSchema>({
         resolver: zodResolver(qnaSchema),
@@ -24,7 +25,7 @@ const CreateAnswerCommunication = ({
 
     const onSubmit: SubmitHandler<QnaSchema> = async (data) => {
         try {
-            const res = await fetch(`/api/course-questions/${state.id}/course-question-answers`, {
+            const res = await fetch(`/api/course-questions/${state.item.ID}/course-question-answers`, {
                 method: 'POST',
                 body: JSON.stringify(data)
             });
@@ -37,7 +38,7 @@ const CreateAnswerCommunication = ({
                     subTitle: 'Envió exitosamente la respuesta',
                     function: () => {
                         setRefresh(true)
-                        setState({ ...state, open: false, status: false, id: 0, courseID: 0 })
+                        setState({ ...state, open: false, item: QNAItems })
                     }
                 })
             }
@@ -55,7 +56,7 @@ const CreateAnswerCommunication = ({
                     register={register}
                     error={errors}
                     type="text"
-                    name="question"
+                    name="answer"
                     leftIcon={false}
                     placeholder="Respuesta"
                 />
