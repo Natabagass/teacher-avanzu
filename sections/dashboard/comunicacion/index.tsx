@@ -123,43 +123,53 @@ const ComunicacionPage = () => {
                             {
                                 data.records.length > 0 ?
                                     data.records.map((item) => (
-                                        <div key={item.ID} className="border border-stroke-primary rounded-2xl p-2 flex flex-row w-full gap-3">
-                                            <div className="relative min-h-[150px] w-[30%]">
-                                                <ImageBlur src={'/assets/cursos/course-img.png'} alt="Course - (Avanzu)" fill className="object-cover rounded-xl object-center" />
-                                            </div>
-                                            <div className="flex flex-col w-full gap-4">
-                                                <div className="flex flex-row w-full items-center justify-between">
-                                                    <Text size="h3" weight="font-semibold" variant="title">{item.courseTitle}</Text>
-                                                    <div className={` ${item.isAnswered ? 'border-green-200' : 'border-orange-200'} border rounded-2xl p-2`}>
-                                                        <Text size="cpt1" weight="font-medium" color={item.isAnswered ? 'text-green-200' : 'text-orange-200'}>{item.isAnswered ? 'Contestada' : 'No leído'}</Text>
-                                                    </div>
+                                        <>
+                                            <div key={item.ID} className="border border-stroke-primary rounded-2xl p-2 flex flex-row w-full gap-3">
+                                                <div className="relative min-h-[150px] w-[30%]">
+                                                    <ImageBlur src={'/assets/cursos/course-img.png'} alt="Course - (Avanzu)" fill className="object-cover rounded-xl object-center" />
                                                 </div>
-                                                <div className="p-4 bg-purple-100 rounded-xl flex flex-col gap-4">
-                                                    <div className="w-full items-center flex flex-row gap-2">
-                                                        <div className="relative w-8 h-8">
-                                                            <ImageBlur src={item.userProfilePicture || `${URL_DUMMY_IMAGE}?name=${item.userDisplayName}&size=120`} alt="Profile - (Avanzu)" fill className="object-cover rounded-full object-center" />
+                                                <div className="flex flex-col w-full gap-4">
+                                                    <div className="flex flex-row w-full items-center justify-between">
+                                                        <Text size="h3" weight="font-semibold" variant="title">{item.courseTitle}</Text>
+                                                        <div className={` ${item.isAnswered ? 'border-green-200' : 'border-orange-200'} border rounded-2xl p-2`}>
+                                                            <Text size="cpt1" weight="font-medium" color={item.isAnswered ? 'text-green-200' : 'text-orange-200'}>{item.isAnswered ? 'Contestada' : 'No leído'}</Text>
                                                         </div>
-                                                        <Text size="p2" weight="font-medium" variant="subTitle">{item.userDisplayName}</Text>
-                                                        <span className="text-content-secondary">
-                                                            &#x2022;
-                                                        </span>
-                                                        <Text size="p2" weight="font-normal" color="text-content-secondary">{item.createdAt}</Text>
                                                     </div>
-                                                    <div className="flex flex-row w-full justify-between">
-                                                        <Text size="p2" weight="font-normal">{item.question}</Text>
-                                                        {
-                                                            item.isAnswered ?
-                                                                <div className="flex flex-row items-center">
-                                                                    <Button
-                                                                        onClick={() => {
-                                                                            setState({ ...state, item: item, open: true, answer: true })
-                                                                        }}
-                                                                        variant="clear" className="text-white" type="button" size="btn2">
-                                                                        <>
-                                                                            Ver respuesta
-                                                                        </>
-                                                                    </Button>
-                                                                    <PiLineVerticalBold className="text-white" />
+                                                    <div className="p-4 bg-purple-100 rounded-xl flex flex-col gap-4">
+                                                        <div className="w-full items-center flex flex-row gap-2">
+                                                            <div className="relative w-8 h-8">
+                                                                <ImageBlur src={item.userProfilePicture || `${URL_DUMMY_IMAGE}?name=${item.userDisplayName}&size=120`} alt="Profile - (Avanzu)" fill className="object-cover rounded-full object-center" />
+                                                            </div>
+                                                            <Text size="p2" weight="font-medium" variant="subTitle">{item.userDisplayName}</Text>
+                                                            <span className="text-content-secondary">
+                                                                &#x2022;
+                                                            </span>
+                                                            <Text size="p2" weight="font-normal" color="text-content-secondary">{item.createdAt}</Text>
+                                                        </div>
+                                                        <div className="flex flex-row w-full justify-between">
+                                                            <Text size="p2" weight="font-normal">{item.question}</Text>
+                                                            {
+                                                                item.isAnswered ?
+                                                                    <div className="flex flex-row items-center">
+                                                                        <Button
+                                                                            onClick={() => {
+                                                                                setState({ ...state, item: item, open: true, answer: true })
+                                                                            }}
+                                                                            variant="clear" className="text-white" type="button" size="btn2">
+                                                                            <>
+                                                                                Ver respuesta
+                                                                            </>
+                                                                        </Button>
+                                                                        <PiLineVerticalBold className="text-white" />
+                                                                        <Button
+                                                                            onClick={() => {
+                                                                                setState({ ...state, item: item, open: true, answer: false })
+                                                                            }}
+                                                                            variant="clear" className="text-white" type="button" size="btn2">
+                                                                            Ver pregunta
+                                                                        </Button>
+                                                                    </div>
+                                                                    :
                                                                     <Button
                                                                         onClick={() => {
                                                                             setState({ ...state, item: item, open: true, answer: false })
@@ -167,39 +177,31 @@ const ComunicacionPage = () => {
                                                                         variant="clear" className="text-white" type="button" size="btn2">
                                                                         Ver pregunta
                                                                     </Button>
-                                                                </div>
-                                                                :
-                                                                <Button
-                                                                    onClick={() => {
-                                                                        setState({ ...state, item: item, open: true, answer: false })
-                                                                    }}
-                                                                    variant="clear" className="text-white" type="button" size="btn2">
-                                                                    Ver pregunta
-                                                                </Button>
-                                                        }
+                                                            }
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <ReactPaginate
+                                                className="flex flex-row w-full justify-center gap-4 items-center"
+                                                breakLabel="..."
+                                                breakClassName="page-item text-white rounded-full bg-purple-300 p-2"
+                                                nextLabel={<TbChevronRight className='w-11 h-11 ml-8 p-3 text-white rounded-full hover:bg-neon-green-main hover:text-base-dark bg-purple-300' />}
+                                                onPageChange={handlePageClick}
+                                                pageRangeDisplayed={3}
+                                                marginPagesDisplayed={2}
+                                                previousLabel={<TbChevronLeft className='w-11 h-11 mr-8 flex p-3 text-white rounded-full hover:bg-neon-green-main hover:text-base-dark bg-purple-300' />}
+                                                renderOnZeroPageCount={() => null}
+                                                pageCount={data.metadata.pageCount}
+                                                containerClassName={"pagination-item"}
+                                                pageClassName={"page-item text-white bg-purple-300 p-4 rounded-full font-medium"}
+                                                activeClassName={"active"}
+                                            />
+                                        </>
                                     ))
                                     :
                                     <EmptyList desc="Los datos que buscas no existen" />
                             }
-                            <ReactPaginate
-                                className="flex flex-row w-full justify-center gap-4 items-center"
-                                breakLabel="..."
-                                breakClassName="page-item text-white rounded-full bg-purple-300 p-2"
-                                nextLabel={<TbChevronRight className='w-11 h-11 ml-8 p-3 text-white rounded-full hover:bg-neon-green-main hover:text-base-dark bg-purple-300' />}
-                                onPageChange={handlePageClick}
-                                pageRangeDisplayed={3}
-                                marginPagesDisplayed={2}
-                                previousLabel={<TbChevronLeft className='w-11 h-11 mr-8 flex p-3 text-white rounded-full hover:bg-neon-green-main hover:text-base-dark bg-purple-300' />}
-                                renderOnZeroPageCount={() => null}
-                                pageCount={data.metadata.pageCount}
-                                containerClassName={"pagination-item"}
-                                pageClassName={"page-item text-white bg-purple-300 p-4 rounded-full font-medium"}
-                                activeClassName={"active"}
-                            />
                         </div>
                         {
                             state.open &&
