@@ -323,7 +323,12 @@ const QuizList = ({
                             </label>
                         </div>
                     </div>
-                    <div onClick={() => addQuestion(page - 1, sub.id - 1)} className="rounded-full bg-neon-green-300 p-4">
+                    <div onClick={() => {
+                        if (modules[page - 1].quizzes[sub.id - 1].questions.length < 5) {
+                            addQuestion(page - 1, sub.id - 1)
+                        }
+                    }} 
+                        className={`${modules[page - 1].quizzes[sub.id - 1].questions.length < 5 ? 'bg-neon-green-300' : 'bg-neon-green-500/40 cursor-not-allowed'} rounded-full  p-4`}>
                         <TbPlus className="text-2xl text-base-dark" />
                     </div>
                 </div>
